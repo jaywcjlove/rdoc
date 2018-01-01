@@ -1,0 +1,17 @@
+{
+  "name": "{{name}}",
+  "version": "1.0.0",
+  "description": "Describe {{name}} here",
+  "private": true,
+  "scripts": {
+    "start": "rdoc -d home,introduce,faq,about --clean"
+  },
+  "keywords": [
+    "{{name}}",
+    "rdoc",
+    "react-doc",
+    "react"
+  ],
+  "author": "",
+  "license": "MIT"
+}

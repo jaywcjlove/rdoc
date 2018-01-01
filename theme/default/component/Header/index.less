@@ -1,0 +1,28 @@
+.logo {
+  float: left;
+  padding: 0 0 0 15px;
+}
+
+.header {
+  box-shadow: 0 2px 8px #f0f1f2;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #d8d7d7;
+  line-height: 54px;
+  min-height: 54px;
+  position: relative;
+  z-index: 9;
+}
+
+.menu {
+  float: right;
+  padding: 0 25px 0 0;
+  a {
+    display: inline-block;
+    margin: 0 0 0 15px;
+  }
+  :global {
+    a.active {
+      color: #1890ff;
+    }
+  }
+}
