@@ -24,9 +24,15 @@ export default class Header extends PureComponent {
     return menuSource.map((item, index) => {
       if (!item) return null;
       if (item.mdconf && item.mdconf.visible === true) return null;
-      if (item.mdconf && item.mdconf.github) {
+
+      const url = item.mdconf && (item.mdconf.github || item.mdconf.url);
+      if (url) {
         const title = item.mdconf.title || item.name;
-        return (<a key={index} target="_blank" href={item.mdconf.github}> {SVGGithub} {title}</a>);
+        return (
+          <a key={index} target="_blank" href={url}>
+            {item.mdconf.github && SVGGithub}{item.mdconf.title && <span>{item.mdconf.title}</span>}
+          </a>
+        );
       }
       if (item.props && item.props.isEmpty === true) return null;
       const regx = new RegExp(`^/${item.name}`, 'g');

@@ -69,7 +69,7 @@ export default function (Lazyload, props) {
           let title = '';
           if (curentRoute.length > 0) {
             curentRoute = curentRoute[0];
-            title = curentRoute.mdconf.title || title;
+            title = `${indexItem.mdconf && indexItem.mdconf.title} - ${curentRoute.mdconf.title || title}`;
           }
           routeProps.indexProps = indexItem;
           return (

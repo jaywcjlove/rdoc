@@ -19,10 +19,25 @@ title: Layout 布局组件
 -->
 ```
 
-⚠️ 通过配置菜单对应根目录下的 `README.md` 来改变 `菜单顺序` 和 `是否显示`，[配置参考](#/introduce/api/menu-config)。
+⚠️ 通过配置菜单对应根目录下的 `README.md` 来改变 `菜单顺序` 和 `是否显示`，[配置参考](#/introduce/api/markdown-config)。
 
 > sort 菜单顺序  
 > visible 菜单是否显示 `true` 不显示  
+
+## Github跳转
+
+新建一个目录 `github`，命令配置 `rdoc -d tutorial,doc,github` 将在主菜单上显示，在 `github` 目录下新建 `READEME.md` 文件，添加 Markdown 配置如下：
+
+> ⚠️ 注意: github 配置项，会增加 `github` 图标  
+> 如果不想显示`图标`，就将 `github` 指定 `url` 配置。
+
+```markdown
+<!--
+title: GitHub
+github: https://github.com/jaywcjlove/rdoc
+sort: 4
+-->
+```
 
 ## 子菜单定制
 

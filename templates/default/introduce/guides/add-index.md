@@ -14,3 +14,5 @@ layout: IndexLayout
 
 下面是首页内容
 ```
+
+添加 `title` 设置将全局标题都会带上。
