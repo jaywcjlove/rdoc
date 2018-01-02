@@ -1,7 +1,7 @@
 {
   "name": "rdoc",
   "version": "1.0.0",
-  "description": "Blazing-fast static site generator for React.",
+  "description": "Fast static site generator for React.",
   "bin": {
     "rdoc": ".bin/rdoc.js"
   },
