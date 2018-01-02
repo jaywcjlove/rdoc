@@ -23,7 +23,7 @@ sort: 2
 > **`sort<Number>`** 菜单顺序，排序顶部菜单，左边二级菜单顺序。  
 > **`visible<Boolean>`** 为 `true` 仅在菜单上不显示，路由任然可以访问。  
 > **`layout<String>`** 默认模板指定 `IndexLayout`，将加载首页模板，并认定为首页。  
-> **`url<String>`** 指定一个URL，点击菜单跳转到对应的地址。  
+> **`github<String>`** 指定一个URL，点击菜单跳转到对应的地址。  
 
 ## 实例
 

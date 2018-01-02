@@ -19,7 +19,7 @@ sort: 5
   "scripts": {
     "doc": "rdoc -d index,src/introduce,doc --clean"
   },
-  "license": "ISC"
+  "license": "MIT"
 }
 ```
 
