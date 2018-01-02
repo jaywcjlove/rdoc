@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Link, Route, Redirect } from 'react-router-dom';
+import DocumentTitle from 'react-document-title';
 import BasicLayout from './layout/BasicLayout';
 import IndexLayout from './layout/IndexLayout';
 import NoMatch from './component/NoMatch';
@@ -54,7 +55,7 @@ export default function (Lazyload, props) {
     ...indexItem,
     component: Lazyload(() => import('./routes/Pages'), indexItem, <Loading />),
   });
-
+  // console.log('indexRoute:', indexItem);
   // 获取首页路由
   indexRoute = props.routeData.filter(item => item.mdconf && item.mdconf.layout === 'IndexLayout');
 
@@ -64,11 +65,21 @@ export default function (Lazyload, props) {
       <Route path="/"
         render={(routeProps) => {
           const { location: { pathname } } = routeProps;
-          if (pathname === '/') {
-            // 加载首页模板
-            return <IndexLayout {...routeProps} {...props} indexRoute={indexRoute} />;
+          let curentRoute = props.routeData.filter(item => item.path === pathname);
+          let title = '';
+          if (curentRoute.length > 0) {
+            curentRoute = curentRoute[0];
+            title = curentRoute.mdconf.title || title;
           }
-          return <BasicLayout {...routeProps} {...props} />;
+          routeProps.indexProps = indexItem;
+          return (
+            <DocumentTitle title={title}>
+              {pathname === '/' ?
+                <IndexLayout {...routeProps} {...props} indexRoute={indexRoute} /> :
+                <BasicLayout {...routeProps} {...props} />
+              }
+            </DocumentTitle>
+          );
         }}
       />
     </Switch>

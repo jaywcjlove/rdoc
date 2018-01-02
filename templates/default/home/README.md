@@ -1,4 +1,5 @@
 <!--
+title: RDoc
 layout: IndexLayout
 visible: true
 -->

@@ -10,10 +10,10 @@ export default class IndexLayout extends PureComponent {
     this.state = {};
   }
   render() {
-    const { location: { pathname }, menuSource, indexRoute } = this.props;
+    const { location: { pathname }, menuSource, indexRoute, indexProps } = this.props;
     return (
       <div className={styles.wapper}>
-        <Header className={styles.header} logo="RDoc" href="/" location={this.props.location} menuSource={menuSource} />
+        <Header className={styles.header} href="/" indexProps={indexProps} location={this.props.location} menuSource={menuSource} />
         <Switch>
           {indexRoute && indexRoute.map((item) => {
             item.path = '/';

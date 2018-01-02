@@ -25,7 +25,7 @@ function routeData(data, arrayRoute = [], routePath = '/', article) {
         props: { ...otherItem },
         article: article || item.name,
       });
-    } else if (!item.isEmpty && item.name !== 'README.md') {
+    } else {
       const { mdconf, ...otherItem } = item;
       arrayRoute.push({
         path: routePropsCurrent,

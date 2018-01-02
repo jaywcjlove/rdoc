@@ -73,16 +73,14 @@ export default class BasicLayout extends PureComponent {
     return childs.length > 0;
   }
   render() {
-    const { location: { pathname }, menuSource, routeData } = this.props;
+    const { location: { pathname }, menuSource, routeData, indexProps } = this.props;
     const isChild = this.isCurentChildren();
     return (
       <div className={styles.wapper} >
-        <Header logo="RDoc" href="/" location={this.props.location} menuSource={menuSource} />
+        <Header href="/" location={this.props.location} indexProps={indexProps} menuSource={menuSource} />
         <div className={styles.wapperContent}>
           {isChild && (
-            <div className={styles.menuWapper}>
-              {this.renderSubMenu(menuSource)}
-            </div>
+            <div className={styles.menuWapper}> {this.renderSubMenu(menuSource)} </div>
           )}
           <div className={classNames('content', {
             [`${styles.content}`]: isChild,

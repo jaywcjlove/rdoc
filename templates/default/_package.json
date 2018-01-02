@@ -4,7 +4,7 @@
   "description": "Describe {{name}} here",
   "private": true,
   "scripts": {
-    "start": "rdoc -d home,introduce,faq,about --clean"
+    "start": "rdoc -d home,introduce,faq,about,github --clean"
   },
   "keywords": [
     "{{name}}",
