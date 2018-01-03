@@ -81,6 +81,10 @@ module.exports = {
               require.resolve('less-loader'),
             ],
           },
+          {
+            test: /\.md$/,
+            loader: require.resolve('raw-extend-loader'),
+          },
           // “file-loader”确保这些资源由WebpackDevServer服务。
           // 当您导入资源时，您将获得（虚拟）文件名。
           // 在生产中，它们将被复制到`build`文件夹。

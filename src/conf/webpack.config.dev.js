@@ -11,7 +11,6 @@ module.exports = function (cmd) {
   config.entry = [
     require.resolve('webpack-hot-dev-clients/webpackHotDevClient'),
     paths.appIndexJs,
-    paths.watchFilePath,
   ];
 
   config.output.path = paths.appBuild;
@@ -57,20 +56,6 @@ module.exports = function (cmd) {
           },
         ],
       });
-
-      loaders.push({
-        test: /\.md$/,
-        use: [
-          {
-            loader: require.resolve('raw-extend-loader'),
-            options: {
-              dir: PATH.join(paths.catchDirPath, './md'),
-              filename: 'underline', // "underline | dir"
-              sep: '___',
-            },
-          },
-        ],
-      });
       item.oneOf = loaders.concat(item.oneOf);
     }
     return item;
@@ -85,7 +70,12 @@ module.exports = function (cmd) {
     new DirectoryTreesPlugin({
       dir: cmd.markdownPaths,
       path: paths.docTreePath ,
-      watch: paths.watchFilePath, // 产生的配置生成 watch 文件，在 entry 的地方引入
+      // 将监听的文件放到指定的目录重新命名
+      watch: {
+        dir: PATH.join(paths.catchDirPath, './md'),
+        filename: 'underline',
+        sep: '___',
+      },
       mdconf: true, // 存在Markdown设置
       extensions: /\.md/,
     }),

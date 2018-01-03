@@ -10,15 +10,15 @@ class WatchMissingNodeModulesPlugin {
       var nodeModulesPath = this.nodeModulesPath;
 
       if (this.nodeModulesPath && !Array.isArray(this.nodeModulesPath)){
-        nodeModulesPath = [this.nodeModulesPath]
-        nodeModulesPath.forEach((nodeModulesPathItem)=>{
-          // If any missing files are expected to appear in node_modules...
-          if (missingDeps.some(file => file.indexOf(nodeModulesPathItem) !== -1)) {
-            // ...tell webpack to watch node_modules recursively until they appear.
-            compilation.contextDependencies.push(nodeModulesPathItem);
-          }
-        })
+        nodeModulesPath = [this.nodeModulesPath];
       }
+      nodeModulesPath.forEach((nodeModulesPathItem) => {
+        // If any missing files are expected to appear in node_modules...
+        if (missingDeps.some(file => file.indexOf(nodeModulesPathItem) !== -1)) {
+          // ...tell webpack to watch node_modules recursively until they appear.
+          compilation.contextDependencies.push(nodeModulesPathItem);
+        }
+      })
       callback();
     });
   }

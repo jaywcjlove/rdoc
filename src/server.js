@@ -13,7 +13,7 @@ const paths = require('./conf/paths');
 const createDevServerConfig = require('./conf/webpack.config.server');
 const webpackConfig = require('./conf/webpack.config.dev');
 
-const DEFAULT_PORT = 3666;
+const DEFAULT_PORT = 6969;
 const isInteractive = process.stdout.isTTY;
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 let HOST = process.env.HOST || '0.0.0.0';
