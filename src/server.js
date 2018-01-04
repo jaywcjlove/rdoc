@@ -4,11 +4,11 @@ process.env.NODE_ENV = 'development';
 
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const openBrowser = require('./utils/openBrowser');
-const choosePort = require('./utils/choosePort');
-const prepareUrls = require('./utils/prepareUrls');
-const createCompiler = require('./utils/createCompiler');
-const clearConsole = require('./utils/clearConsole');
+const openBrowser = require('rdoc-dev-utils/openBrowser');
+const choosePort = require('rdoc-dev-utils/choosePort');
+const prepareUrls = require('rdoc-dev-utils/prepareUrls');
+const createCompiler = require('rdoc-dev-utils/createCompiler');
+const clearConsole = require('rdoc-dev-utils/clearConsole');
 const paths = require('./conf/paths');
 const createDevServerConfig = require('./conf/webpack.config.server');
 const webpackConfig = require('./conf/webpack.config.dev');

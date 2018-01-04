@@ -5,7 +5,7 @@ const config = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DirectoryTreesPlugin = require('directory-trees-webpack-plugin');
 const paths = require('./paths');
-const WatchMissingNodeModulesPlugin = require('../utils/WatchMissingNodeModulesPlugin');
+const WatchMissingNodeModulesPlugin = require('rdoc-dev-utils/WatchMissingNodeModulesPlugin');
 
 module.exports = function (cmd) {
   config.entry = [
