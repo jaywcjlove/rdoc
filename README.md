@@ -9,3 +9,7 @@ rdoc init my-project  # 初始化项目
 
 cd my-project && npm start # 进入工程，启动服务
 ```
+
+### License
+
+The MIT License (MIT)
