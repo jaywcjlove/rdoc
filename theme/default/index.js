@@ -34,13 +34,13 @@ export default function (Lazyload, props) {
   }
   // 首页路由
   // 获取自定义路由
-  let indexProps = getIndexProps(props.menuSource);
+  let indexProps = getIndexProps(props.menuSource) || {};
   if (indexProps) {
     props.routeData = props.routeData.filter(item => item.mdconf && item.mdconf.layout !== 'IndexLayout');
   } else {
     // 未定义首页，默认第一个路由当首页
     indexProps = props.routeData.find((item, index) => index === 0);
-    indexProps.mdconf.layout = 'IndexLayout';
+    if (indexProps) indexProps.mdconf.layout = 'IndexLayout';
   }
 
   const indexItem = {
