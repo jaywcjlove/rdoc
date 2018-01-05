@@ -35,8 +35,18 @@ import(`__project_root__/.cache/md/${filename}.md`).then((data) => {
 });
 ```
 
-## 模板入口
+## Markdown文件索引
 
+那你需要建立一个 `替身` 文件 `rdoc.tree.data.json`，引用替身文件，就可以获取到目录索引内容，这个在编译的时候会自动返回文件索引的 `json`。
+
+> ⚠️ 替身文件名字，必须取名 `rdoc.tree.data.json`。 
+> ⚠️ 这个文件是必须建立，引用，这样可以渲染菜单。   
+
+```js
+import menuSource from './rdoc.tree.data.json';
+```
+
+## 模板入口
 
 ```js
 import BaseLayout from './layout/BasicLayout';
@@ -203,6 +213,8 @@ export default function (Lazyload, props) {
   "classnames": "2.2.5",
   "highlight.js": "9.12.0",
   "prop-types": "15.6.0",
+  "flowchart.js": "1.8.0",
+  "katex": "0.9.0-alpha2",
   "react": "16.2.0",
   "react-dom": "16.2.0",
   "react-markdown": "3.1.3",
