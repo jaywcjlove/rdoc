@@ -24,6 +24,12 @@ program
   })
   .parse(process.argv);
 
+// 没有输入任何命令参数，默认输出帮助信息
+function help() {
+  if (program.args.length < 1) return program.help()
+}
+help()
+
 // rdoc 工具根目录
 // program.rdocPath = PATH.join(__dirname, '../');
 // 所有 Markdown 目录
