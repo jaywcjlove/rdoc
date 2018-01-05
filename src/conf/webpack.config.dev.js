@@ -3,7 +3,6 @@ const PATH = require('path');
 const webpack = require('webpack');
 const config = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const DirectoryTreesPlugin = require('directory-trees-webpack-plugin');
 const paths = require('./paths');
 const WatchMissingNodeModulesPlugin = require('rdoc-dev-utils/WatchMissingNodeModulesPlugin');
 
@@ -56,6 +55,38 @@ module.exports = function (cmd) {
           },
         ],
       });
+
+      loaders.push({
+        test: /\.md$/,
+        use: [
+          {
+            loader: require.resolve('raw-content-replace-loader'),
+            options: {
+              path: PATH.join(paths.catchDirPath, './md'), // 需要替换的目录
+              replace: paths.projectPath, // 替换成目标目录
+              sep: /___/g,               // 文件名存储，文件夹+下划线间隔+文件名
+            }
+          }
+        ]
+      })
+
+      loaders.push({
+        test: /\.json$/,
+        use: [
+          {
+            loader: require.resolve('raw-tree-replace-loader'),
+            options: {
+              include: /rdoc\.tree\.data\.json$/, // 检查包含的文件名字
+              directoryTrees: { // 指定目录生成目录树，json
+                dir: cmd.markdownPaths,
+                mdconf: true,
+                extensions: /\.md/,
+              }
+            }
+          }
+        ]
+      })
+
       item.oneOf = loaders.concat(item.oneOf);
     }
     return item;
@@ -66,18 +97,6 @@ module.exports = function (cmd) {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.defaultHTMLPath,
-    }),
-    new DirectoryTreesPlugin({
-      dir: cmd.markdownPaths,
-      path: paths.docTreePath ,
-      // 将监听的文件放到指定的目录重新命名
-      watch: {
-        dir: PATH.join(paths.catchDirPath, './md'),
-        filename: 'underline',
-        sep: '___',
-      },
-      mdconf: true, // 存在Markdown设置
-      extensions: /\.md/,
     }),
     // 将模块名称添加到工厂功能，以便它们显示在浏览器分析器中。
     // 当接收到热更新信号时，在浏览器console控制台打印更多可读性高的模块名称等信息

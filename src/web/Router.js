@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashRouter, withRouter, Route, Switch } from 'react-router-dom';
-import menuSource from '__project_root__/.cache/.reactdoc.tree.json';
+import menuSource from './rdoc.tree.data.json';
 import theme from '../../theme/default';
 import lazyload from './lib/lazyload/';
 

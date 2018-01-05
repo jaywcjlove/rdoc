@@ -5,6 +5,7 @@ const program = require('commander');
 const color = require('colors-cli/toxic');
 const initProject = require('../src/commands/initProject');
 const clean = require('../src/commands/clean');
+const initCatch = require('../src/utils/initCatch');
 const server = require('../src/server');
 const paths = require('../src/conf/paths');
 
@@ -24,11 +25,6 @@ program
   })
   .parse(process.argv);
 
-// 没有输入任何命令参数，默认输出帮助信息
-function help() {
-  if (program.args.length < 1) return program.help()
-}
-help()
 
 // rdoc 工具根目录
 // program.rdocPath = PATH.join(__dirname, '../');
@@ -57,6 +53,7 @@ program.markdownPaths.forEach((item) => {
 
 if (isExists) {
   FS.ensureDirSync(paths.catchDirPath);
-  // console.log('Start!!')
-  server(program);
+  initCatch(program, () => {
+    server(program);
+  })
 }
