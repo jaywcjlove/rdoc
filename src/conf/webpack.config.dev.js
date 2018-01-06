@@ -1,10 +1,11 @@
 
 const PATH = require('path');
 const webpack = require('webpack');
-const config = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const paths = require('./paths');
 const WatchMissingNodeModulesPlugin = require('rdoc-dev-utils/WatchMissingNodeModulesPlugin');
+const CreateSpareWebpackPlugin = require('create-spare-webpack-plugin')
+const config = require('./webpack.config');
+const paths = require('./paths');
 
 module.exports = function (cmd) {
   config.entry = [
@@ -101,6 +102,16 @@ module.exports = function (cmd) {
     // 将模块名称添加到工厂功能，以便它们显示在浏览器分析器中。
     // 当接收到热更新信号时，在浏览器console控制台打印更多可读性高的模块名称等信息
     new webpack.NamedModulesPlugin(),
+    new CreateSpareWebpackPlugin({
+      // 备用文件目录，比对是否存在，不存在生成，根据sep 目录规则生成
+      path: PATH.join(paths.catchDirPath, './md'),
+      sep: '___', // 检查目标目录文件，文件名存储，文件夹+下划线间隔+文件名
+      directoryTrees: { // 索引目录
+        dir: cmd.markdownPaths,
+        mdconf: true,
+        extensions: /\.md$/,
+      },
+    }),
     // 如果您需要一个缺少的模块，然后再安装npm，那么您仍然需要重新启动Webpack的开发服务器来发现它。
     // 此插件使自动发现，所以您不必重新启动。
     new WatchMissingNodeModulesPlugin([paths.appNodeModules, paths.defaultNodeModules]),
