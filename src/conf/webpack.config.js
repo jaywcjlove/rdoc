@@ -34,11 +34,11 @@ module.exports = {
         // 当没有加载器匹配时，它将返回到加载程序列表末尾的“file”加载器。
         oneOf: [
           {
-            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+            test: /\.(svg|png|bmp|jpg|jpeg|gif)$/,
             loader: require.resolve('url-loader'),
             options: {
               limit: 10000,
-              name: 'static/[name].[hash:8].[ext]',
+              name: 'img/[name].[hash:8].[ext]',
             },
           },
           // “postcss-loader”将autoprefixer应用到我们的CSS中。
