@@ -6,13 +6,15 @@ const color = require('colors-cli/toxic');
 const initProject = require('../src/commands/initProject');
 const clean = require('../src/commands/clean');
 const initCatch = require('../src/utils/initCatch');
-const server = require('../src/server');
+const Servers = require('../src/server');
+const Build = require('../src/build');
 const paths = require('../src/conf/paths');
 
 program
   .option("-i, init [path]", "Create an empty website or reinitialize an existing one.")
   .option("-d, --doc <path>", "Other documents generated.")
   .option("-p, --port [port]", "The port.", 6666)
+  .option('--build', 'Creating an optimized production build.')
   .option('--clean', 'Delete the .cache folder.')
   .on('--help', function () {
     console.log('\n  Examples:');
@@ -54,6 +56,10 @@ program.markdownPaths.forEach((item) => {
 if (isExists) {
   FS.ensureDirSync(paths.catchDirPath);
   initCatch(program, () => {
-    server(program);
+    if (program.build) {
+      Build(program);
+    } else {
+      Servers(program);
+    }
   })
 }

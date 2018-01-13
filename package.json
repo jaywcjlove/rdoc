@@ -7,7 +7,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "doc": ".bin/rdoc.js -d templates/default/home,templates/default/introduce,templates/default/faq,templates/default/about,templates/default/github --clean"
+    "doc": ".bin/rdoc.js -d templates/default/home,templates/default/introduce,templates/default/faq,templates/default/about,templates/default/github --clean",
+    "doc:build": ".bin/rdoc.js -d templates/default/home,templates/default/introduce,templates/default/faq,templates/default/about,templates/default/github --clean --build"
   },
   "repository": {
     "type": "git",

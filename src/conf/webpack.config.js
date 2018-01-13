@@ -5,7 +5,9 @@ const PostcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 module.exports = {
   entry: {},
   output: {
+    path: paths.appBuild,
     publicPath: paths.publicPath,
+    chunkFilename: 'js/[hash:8].[name].js',
   },
   module: {
     strictExportPresence: true,
