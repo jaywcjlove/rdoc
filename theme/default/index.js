@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Link, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 import BasicLayout from './layout/BasicLayout';
 import IndexLayout from './layout/IndexLayout';
@@ -11,7 +11,7 @@ import './index.less';
 // 获取首页路由参数
 // Markdown 配置 layout = 'IndexLayout'
 const getIndexProps = (menus = [], attr) => {
-  menus.forEach((item, index) => {
+  menus.forEach((item) => {
     if (item && item.mdconf && item.mdconf.layout === 'IndexLayout') {
       attr = item;
     }

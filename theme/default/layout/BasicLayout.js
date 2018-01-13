@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import styles from './BasicLayout.less';
 import Header from '../component/Header';
 import Footer from '../component/Footer';
-import NoMatch from '../component/NoMatch';
 
 function getCurrentArticle(routeData, path) {
   let article = null;
@@ -73,7 +72,7 @@ export default class BasicLayout extends PureComponent {
     return childs.length > 0;
   }
   render() {
-    const { location: { pathname }, menuSource, routeData, indexProps } = this.props;
+    const { menuSource, routeData, indexProps } = this.props;
     const isChild = this.isCurentChildren();
     return (
       <div className={styles.wapper} >

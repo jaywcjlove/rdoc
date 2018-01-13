@@ -27,7 +27,6 @@ export default class Header extends PureComponent {
 
       const url = item.mdconf && (item.mdconf.github || item.mdconf.url);
       if (url) {
-        const title = item.mdconf.title || item.name;
         return (
           <a key={index} target="_blank" href={url}>
             {item.mdconf.github && SVGGithub}{item.mdconf.title && <span>{item.mdconf.title}</span>}
@@ -45,8 +44,8 @@ export default class Header extends PureComponent {
     });
   }
   render() {
-    const { location: { pathname }, menuSource, className, children, logo, indexProps } = this.props;
-    const { mdconf } = this.props.indexProps;
+    const { location: { pathname }, menuSource, className, children } = this.props;
+    const { mdconf } = this.props.indexProps || {};
     return (
       <div className={classNames('header', styles.header, className)}>
         <Link to="/" replace> <div className={styles.logo}>{mdconf.title}</div> </Link>
