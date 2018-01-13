@@ -1,13 +1,13 @@
 rdoc
 ---
 
-用于生成React组件库文档或简单的博客网站
+用于生成文档网站或简单的博客网站。
 
 ```bash
-npm install rdoc -g   # 安装工具
-rdoc init my-project  # 初始化项目
+npm install rdoc -g   # Install rdoc
+rdoc init my-project  # Init project
 
-cd my-project && npm start # 进入工程，启动服务
+cd my-project && npm start # Into the directory, start the service.
 ```
 
 <div align="center">
