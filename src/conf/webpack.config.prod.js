@@ -1,6 +1,7 @@
 const PATH = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CreateSpareWebpackPlugin = require('create-spare-webpack-plugin');
+const CopyMarkdownImageWebpackPlugin = require('copy-markdown-image-webpack-plugin');
 const paths = require('./paths');
 const config = require('./webpack.config');
 
@@ -81,6 +82,10 @@ module.exports = function (cmd) {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.defaultHTMLPath,
+    }),
+    new CopyMarkdownImageWebpackPlugin({
+      dir: cmd.markdownPaths,
+      toDir: paths.appBuild,
     }),
     new CreateSpareWebpackPlugin({
       // 备用文件目录，比对是否存在，不存在生成，根据sep 目录规则生成
