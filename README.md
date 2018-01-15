@@ -45,6 +45,47 @@ Examples:
   $ rdoc -h 0.0.0.0 -d doc --clean
   $ rdoc --publish https://git_repo.git --branch master
 ```
+### Development
+
+To develop, run the self-reloading build, Get the code:
+
+```shell
+$ git clone https://github.com/jaywcjlove/rdoc.git
+$ cd rdoc     # Into the directory
+$ npm install # or  yarn install
+```
+
+To develop, run the self-reloading build:
+
+```bash
+# Run the app
+# Restart the app automatically every time code changes. 
+# Useful during development.
+$ npm run doc
+```
+
+Open your browser and visit http://localhost:5858
+
+### Folders
+
+```bash
+.
+├── README.md
+├── dist
+├── package.json
+├── src
+│   ├── build.js
+│   ├── commands
+│   ├── conf
+│   ├── publish.js
+│   ├── server.js
+│   ├── utils
+│   └── web
+├── templates
+│   └── default # document the static file.
+└── theme
+    └── default
+```
 
 ### License
 
