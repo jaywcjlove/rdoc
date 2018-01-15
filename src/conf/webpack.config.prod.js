@@ -9,7 +9,7 @@ module.exports = function (cmd) {
   config.bail = true;
   config.entry = paths.appIndexJs;
   config.module.strictExportPresence = true;
-  config.output.path = PATH.join(cmd.projectPath, cmd.output);
+  config.output.path = cmd.output;
 
   config.module.loaders = config.module.loaders.map((item) => {
     if (item.oneOf) {

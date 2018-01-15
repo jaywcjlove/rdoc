@@ -6,7 +6,7 @@
     "rdoc": ".bin/rdoc.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": ".bin/rdoc.js --publish https://github.com/react-doc/react-doc.github.io.git --branch master",
     "doc": ".bin/rdoc.js -d templates/default/home,templates/default/introduce,templates/default/faq,templates/default/about,templates/default/github --clean",
     "doc:build": ".bin/rdoc.js -d templates/default/home,templates/default/introduce,templates/default/faq,templates/default/about,templates/default/github --clean --build"
   },
@@ -63,6 +63,8 @@
     "react-hot-loader": "^3.1.3",
     "react-markdown": "^3.1.4",
     "react-router-dom": "^4.2.2",
+    "rimraf": "^2.6.2",
+    "simple-git": "^1.85.0",
     "string-replace-loader": "^1.3.0",
     "style-loader": "^0.19.1",
     "url-loader": "^0.6.2",
