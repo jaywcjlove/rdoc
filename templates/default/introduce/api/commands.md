@@ -15,6 +15,7 @@ Options:
   -d, --doc <path>     Other documents generated.
   -o, --output <path>  Writes the compiled file to the disk directory. (default: dist)
   -p, --port [number]  The port. (default: 5858)
+  -h, --host [host]    The host. (default: 0.0.0.0)
   --build              Creating an optimized production build.
   --clean              Delete the .cache folder.
   -h, --help           output usage information
@@ -25,7 +26,8 @@ Examples:
   $ rdoc init doc-example
   $ rdoc -d doc/mm
   $ rdoc -d tutorial,doc
-  $ rdoc -d tutorial,doc --build
+  $ rdoc -p 2323  -d doc --clean
+  $ rdoc -h 0.0.0.0 -d doc --clean
 ```
 
 

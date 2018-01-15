@@ -15,10 +15,9 @@ const webpackConfig = require('./conf/webpack.config.dev');
 
 const isInteractive = process.stdout.isTTY;
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-let HOST = process.env.HOST || '0.0.0.0';
 
 module.exports = function server(cmd) {
-  HOST = cmd.host || HOST;
+  const HOST = cmd.host;
   const DEFAULT_PORT = cmd.port;
   choosePort(HOST, DEFAULT_PORT).then((port) => {
     // 我们还没有找到一个端口。

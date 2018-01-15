@@ -15,6 +15,7 @@ program
   .option('-d, --doc <path>', 'Other documents generated.')
   .option('-o, --output <path>', 'Writes the compiled file to the disk directory.', 'dist')
   .option('-p, --port [number]', 'The port.', 5858)
+  .option('-h, --host [host]', 'The host.', '0.0.0.0')
   .option('--build', 'Creating an optimized production build.')
   .option('--clean', 'Delete the .cache folder.')
   .on('--help', function () {
