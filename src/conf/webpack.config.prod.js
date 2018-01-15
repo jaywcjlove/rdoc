@@ -9,6 +9,7 @@ module.exports = function (cmd) {
   config.bail = true;
   config.entry = paths.appIndexJs;
   config.module.strictExportPresence = true;
+  config.output.path = PATH.join(cmd.projectPath, cmd.output);
 
   config.module.loaders = config.module.loaders.map((item) => {
     if (item.oneOf) {
@@ -85,7 +86,7 @@ module.exports = function (cmd) {
     }),
     new CopyMarkdownImageWebpackPlugin({
       dir: cmd.markdownPaths,
-      toDir: paths.appBuild,
+      toDir: config.output.path,
     }),
     new CreateSpareWebpackPlugin({
       // 备用文件目录，比对是否存在，不存在生成，根据sep 目录规则生成

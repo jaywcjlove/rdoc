@@ -11,9 +11,10 @@ const Build = require('../src/build');
 const paths = require('../src/conf/paths');
 
 program
-  .option("-i, init [path]", "Create an empty website or reinitialize an existing one.")
-  .option("-d, --doc <path>", "Other documents generated.")
-  .option("-p, --port [number]", "The port.", 5858)
+  .option('-i, init [path]', 'Create an empty website or reinitialize an existing one.')
+  .option('-d, --doc <path>', 'Other documents generated.')
+  .option('-o, --output <path>', 'Writes the compiled file to the disk directory.', 'dist')
+  .option('-p, --port [number]', 'The port.', 5858)
   .option('--build', 'Creating an optimized production build.')
   .option('--clean', 'Delete the .cache folder.')
   .on('--help', function () {
