@@ -13,13 +13,13 @@ const paths = require('./conf/paths');
 const createDevServerConfig = require('./conf/webpack.config.server');
 const webpackConfig = require('./conf/webpack.config.dev');
 
-const DEFAULT_PORT = 6969;
 const isInteractive = process.stdout.isTTY;
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 let HOST = process.env.HOST || '0.0.0.0';
 
 module.exports = function server(cmd) {
   HOST = cmd.host || HOST;
+  const DEFAULT_PORT = cmd.port;
   choosePort(HOST, DEFAULT_PORT).then((port) => {
     // 我们还没有找到一个端口。
     if (port == null) return;

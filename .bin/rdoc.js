@@ -13,7 +13,7 @@ const paths = require('../src/conf/paths');
 program
   .option("-i, init [path]", "Create an empty website or reinitialize an existing one.")
   .option("-d, --doc <path>", "Other documents generated.")
-  .option("-p, --port [port]", "The port.", 6666)
+  .option("-p, --port [number]", "The port.", 5858)
   .option('--build', 'Creating an optimized production build.')
   .option('--clean', 'Delete the .cache folder.')
   .on('--help', function () {
@@ -23,6 +23,7 @@ program
     console.log('    $ rdoc init doc-example');
     console.log('    $ rdoc -d doc/mm');
     console.log('    $ rdoc -d tutorial,doc');
+    console.log('    $ rdoc -d tutorial,doc --build');
     console.log();
   })
   .parse(process.argv);
