@@ -72,6 +72,7 @@
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7",
     "webpack-hot-dev-clients": "^1.0.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "write": "^1.0.3"
   }
 }
