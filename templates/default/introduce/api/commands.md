@@ -11,20 +11,21 @@ Usage: rdoc [options]
 
 Options:
 
-  -i, init [path]    Create an empty website or reinitialize an existing one.
-  -d, --doc <path>   Other documents generated.
-  -p, --port [port]  The port. (default: 6666)
-  --clean            Delete the .cache folder.
-  -h, --help         output usage information
+  -i, init [path]      Create an empty website or reinitialize an existing one.
+  -d, --doc <path>     Other documents generated.
+  -o, --output <path>  Writes the compiled file to the disk directory. (default: dist)
+  -p, --port [number]  The port. (default: 5858)
+  --build              Creating an optimized production build.
+  --clean              Delete the .cache folder.
+  -h, --help           output usage information
 
 Examples:
 
-  $ rdoc -d doc/mm
   $ rdoc init
   $ rdoc init doc-example
+  $ rdoc -d doc/mm
   $ rdoc -d tutorial,doc
-  $ PORT=3333 rdoc -d doc --clean
-  $ HOST=0.0.0.0 rdoc -d doc --clean
+  $ rdoc -d tutorial,doc --build
 ```
 
 
@@ -48,8 +49,8 @@ Examples:
 ```shell
 $ rdoc -d doc/mm
 $ rdoc -d tutorial,doc
-$ PORT=3333 rdoc -d doc --clean
-$ HOST=0.0.0.0 rdoc -d doc --clean
+$ rdoc -p 2323  -d doc --clean
+$ rdoc -h 0.0.0.0 -d doc --clean
 ```
 
 

@@ -24,11 +24,11 @@ program
     console.log('    $ rdoc init doc-example');
     console.log('    $ rdoc -d doc/mm');
     console.log('    $ rdoc -d tutorial,doc');
-    console.log('    $ rdoc -d tutorial,doc --build');
+    console.log('    $ rdoc -p 2323  -d doc --clean');
+    console.log('    $ rdoc -h 0.0.0.0 -d doc --clean');
     console.log();
   })
   .parse(process.argv);
-
 
 // rdoc 工具根目录
 // program.rdocPath = PATH.join(__dirname, '../');
