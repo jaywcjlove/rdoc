@@ -1,6 +1,4 @@
 const paths = require('./paths');
-const autoprefixer = require('autoprefixer');
-const PostcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 
 module.exports = {
   entry: {},
@@ -42,46 +40,6 @@ module.exports = {
               limit: 10000,
               name: 'img/[name].[hash:8].[ext]',
             },
-          },
-          // “postcss-loader”将autoprefixer应用到我们的CSS中。
-          // “css-loader”可以解析CSS中的路径，并添加资源作为依赖关系。
-          // “style-loader”将CSS转换为注入<style>标签的JS模块。
-          // 在生产中，我们使用一个插件将该CSS提取到一个文件，但是
-          // 在开发中“style-loader”可以对CSS进行热编辑。
-          {
-            test: /\.(css|less)$/,
-            use: [
-              require.resolve('style-loader'),
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                  modules: true,
-                  localIdentName: '[name]-[hash:base64:5]',
-                  importLoaders: 1,
-                },
-              },
-              {
-                loader: require.resolve('postcss-loader'),
-                options: {
-                  // Necessary for external CSS imports to work
-                  // https://github.com/facebookincubator/create-react-app/issues/2677
-                  ident: 'postcss',
-                  plugins: () => [
-                    PostcssFlexbugsFixes,
-                    autoprefixer({
-                      browsers: [
-                        '>1%',
-                        'last 4 versions',
-                        'Firefox ESR',
-                        'not ie < 9', // React doesn't support IE8 anyway
-                      ],
-                      flexbox: 'no-2009',
-                    }),
-                  ],
-                },
-              },
-              require.resolve('less-loader'),
-            ],
           },
           {
             test: /\.md$/,

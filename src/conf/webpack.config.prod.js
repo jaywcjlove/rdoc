@@ -1,10 +1,15 @@
 const PATH = require('path');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CreateSpareWebpackPlugin = require('create-spare-webpack-plugin');
 const CopyMarkdownImageWebpackPlugin = require('copy-markdown-image-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const paths = require('./paths');
 const config = require('./webpack.config');
+
+// 注意：在这里定义，因为它将被使用不止一次。
+const cssFilename = 'css/[name].[contenthash:8].css';
 
 module.exports = function (cmd) {
   config.bail = true;
@@ -74,6 +79,56 @@ module.exports = function (cmd) {
         ]
       })
 
+      loaders.push(
+        // “postcss-loader”将autoprefixer应用到我们的CSS中。
+        // “css-loader”可以解析CSS中的路径，并添加资源作为依赖关系。
+        // “style-loader”将CSS转换为注入<style>标签的JS模块。
+        // 在生产中，我们使用一个插件将该CSS提取到一个文件，但是
+        // 在开发中“style-loader”可以对CSS进行热编辑。
+        {
+          test: /\.(css|less)$/,
+          loader: ExtractTextPlugin.extract(
+            Object.assign(
+              {
+                fallback: require.resolve('style-loader'),
+                use: [
+                  {
+                    loader: require.resolve('css-loader'),
+                    options: {
+                      modules: true,
+                      minimize: true,
+                      localIdentName: '[name]-[hash:base64:5]',
+                      importLoaders: 1,
+                    },
+                  },
+                  {
+                    loader: require.resolve('postcss-loader'),
+                    options: {
+                      // Necessary for external CSS imports to work
+                      // https://github.com/facebookincubator/create-react-app/issues/2677
+                      ident: 'postcss',
+                      plugins: () => [
+                        require('postcss-flexbugs-fixes'),
+                        autoprefixer({
+                          browsers: [
+                            '>1%',
+                            'last 4 versions',
+                            'Firefox ESR',
+                            'not ie < 9', // React doesn't support IE8 anyway
+                          ],
+                          flexbox: 'no-2009',
+                        }),
+                      ],
+                    },
+                  },
+                  require.resolve('less-loader'),
+                ],
+              }
+            )
+          ),
+        }
+      )
+
       item.oneOf = loaders.concat(item.oneOf);
     }
     return item;
@@ -116,6 +171,10 @@ module.exports = function (cmd) {
         // https://github.com/facebookincubator/create-react-app/issues/2488
         ascii_only: true,
       },
+    }),
+    // 注意：如果在“loader”中没有ExtractTextPlugin.extract（..），这将不起作用。
+    new ExtractTextPlugin({
+      filename: cssFilename,
     }),
     new CopyMarkdownImageWebpackPlugin({
       dir: cmd.markdownPaths,
