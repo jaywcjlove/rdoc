@@ -55,7 +55,7 @@ export default function (Lazyload, props) {
     ...indexItem,
     component: Lazyload(() => import('./routes/Pages'), indexItem, <Loading />),
   });
-  // console.log('indexRoute:', indexItem);
+
   // 获取首页路由
   indexRoute = props.routeData.filter(item => item.mdconf && item.mdconf.layout === 'IndexLayout');
 
@@ -66,12 +66,16 @@ export default function (Lazyload, props) {
         render={(routeProps) => {
           const { location: { pathname } } = routeProps;
           let curentRoute = props.routeData.filter(item => item.path === pathname);
-          let title = '-';
+          let title = [];
           if (curentRoute.length > 0) {
             curentRoute = curentRoute[0];
-            if (indexItem.mdconf && indexItem.mdconf.title) {
-              title = `${curentRoute.mdconf.title || title} - ${indexItem.mdconf && indexItem.mdconf.title}`;
+            if (curentRoute.mdconf && curentRoute.mdconf.title && curentRoute.mdconf.layout !== 'IndexLayout') {
+              title.push(curentRoute.mdconf.title);
             }
+            if (indexItem.mdconf && indexItem.mdconf.title) {
+              title.push(indexItem.mdconf.title);
+            }
+            title = title.length > 1 ? title.join(' - ') : title.join('');
           }
           routeProps.indexProps = indexItem;
           return (
