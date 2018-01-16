@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from '../component/Header';
 import Footer from '../component/Footer';
 import styles from './indexLayout.less';
+import logo from '../rdoc.logo.svg';
 
 export default class IndexLayout extends PureComponent {
   constructor(props) {
@@ -13,7 +14,7 @@ export default class IndexLayout extends PureComponent {
     const { menuSource, indexRoute, indexProps } = this.props;
     return (
       <div className={styles.wapper}>
-        <Header className={styles.header} href="/" indexProps={indexProps} location={this.props.location} menuSource={menuSource} />
+        <Header logo={logo} className={styles.header} href="/" indexProps={indexProps} location={this.props.location} menuSource={menuSource} />
         <Switch>
           {indexRoute && indexRoute.map((item) => {
             item.path = '/';

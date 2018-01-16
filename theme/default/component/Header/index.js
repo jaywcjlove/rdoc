@@ -45,11 +45,11 @@ export default class Header extends PureComponent {
     });
   }
   render() {
-    const { location: { pathname }, menuSource, className, children } = this.props;
+    const { location: { pathname }, menuSource, className, children, logo } = this.props;
     const { mdconf } = this.props.indexProps || {};
     return (
       <div className={classNames('header', styles.header, className)}>
-        <Link to="/" replace> <div className={styles.logo}>{mdconf.title}</div> </Link>
+        <Link to="/" replace> <div className={styles.logo}>{logo && <img alt="logo" src={logo} />}<span>{mdconf.title}</span></div> </Link>
         {menuSource && <div className={styles.menu}>{this.renderTopMenu(menuSource, pathname)}</div>}
         {children && children.map((item, index) => {
           if (isString(item)) return item;

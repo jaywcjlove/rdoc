@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import styles from './BasicLayout.less';
 import Header from '../component/Header';
 import Footer from '../component/Footer';
+import logo from '../rdoc.logo.svg';
 
 function getCurrentArticle(routeData, path) {
   let article = null;
@@ -76,7 +77,7 @@ export default class BasicLayout extends PureComponent {
     const isChild = this.isCurentChildren();
     return (
       <div className={styles.wapper} >
-        <Header href="/" location={this.props.location} indexProps={indexProps} menuSource={menuSource} />
+        <Header logo={logo} href="/" location={this.props.location} indexProps={indexProps} menuSource={menuSource} />
         <div className={styles.wapperContent}>
           {isChild && (
             <div className={styles.menuWapper}> {this.renderSubMenu(menuSource)} </div>
