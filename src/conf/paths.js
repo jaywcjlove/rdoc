@@ -9,6 +9,11 @@ const resolveApp = relativePath => PATH.resolve(appDirectory, relativePath);
 // rdoc 工具所在目录
 const resolveTool = relativePath => PATH.resolve(toolDirectory, relativePath);
 
+// favicon
+const faviconPath = () => FS.existsSync(PATH.resolve(appDirectory, './favicon.ico'))
+    ? PATH.resolve(appDirectory, './favicon.ico')
+    : resolveTool('../../theme/default/favicon.ico');
+
 module.exports = {
   // Markdown 所在目录
   appPackage: resolveApp('./package.json'),
@@ -22,6 +27,7 @@ module.exports = {
   // rdoc 工具所在目录
   defaultNodeModules: resolveTool('node_modules'),
   defaultTemplatePath: resolveTool('../../templates/default'),
+  defaultFaviconPath: faviconPath(),
   defaultHTMLPath: resolveTool('../../theme/default/index.html'),
   appIndexJs: resolveTool('../web/index.js'),
   appDir: resolveTool('../web'),

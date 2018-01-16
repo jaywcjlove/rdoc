@@ -128,6 +128,7 @@ module.exports = function (cmd) {
   config.plugins = config.plugins.concat([
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
+      favicon: paths.defaultFaviconPath,
       inject: true,
       template: paths.defaultHTMLPath,
     }),
