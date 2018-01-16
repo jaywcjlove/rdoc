@@ -9,10 +9,30 @@ const resolveApp = relativePath => PATH.resolve(appDirectory, relativePath);
 // rdoc 工具所在目录
 const resolveTool = relativePath => PATH.resolve(toolDirectory, relativePath);
 
+let appPackage = resolveApp('./package.json');
+appPackage = require(appPackage);
+
 // favicon
-const faviconPath = () => FS.existsSync(PATH.resolve(appDirectory, './favicon.ico'))
-    ? PATH.resolve(appDirectory, './favicon.ico')
-    : resolveTool('../../theme/default/favicon.ico');
+const faviconPath = () => {
+  if (appPackage.rdoc && appPackage.rdoc.favicon
+    && FS.existsSync(PATH.resolve(appDirectory, appPackage.rdoc.favicon))) {
+    return PATH.resolve(appDirectory, appPackage.rdoc.favicon);
+  } else if (FS.existsSync(PATH.resolve(appDirectory, './favicon.ico'))) {
+    return PATH.resolve(appDirectory, './favicon.ico')
+  }
+  return resolveTool('../../theme/default/favicon.ico');
+}
+
+// get logo
+const logoPath = () => {
+  if (appPackage.rdoc && appPackage.rdoc.logo
+    && FS.existsSync(PATH.resolve(appDirectory, appPackage.rdoc.logo))){
+    return PATH.resolve(appDirectory, appPackage.rdoc.logo);
+  } else if (FS.existsSync(PATH.resolve(appDirectory, './logo.svg'))) {
+    return PATH.resolve(appDirectory, './logo.svg')
+  }
+  return false;
+}
 
 module.exports = {
   // Markdown 所在目录
@@ -24,6 +44,7 @@ module.exports = {
   watchFilePath: resolveApp('.cache/watch-dir.js'),
   projectPath: appDirectory,
   publicPath: '/',
+  logoPath: logoPath(),
   // rdoc 工具所在目录
   defaultNodeModules: resolveTool('node_modules'),
   defaultTemplatePath: resolveTool('../../templates/default'),

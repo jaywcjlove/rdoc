@@ -35,10 +35,16 @@ module.exports = {
         oneOf: [
           {
             test: /\.(svg|png|bmp|jpg|jpeg|gif)$/,
-            loader: require.resolve('url-loader'),
+            loader: require.resolve('url-replace-loader'),
             options: {
-              limit: 10000,
+              limit: 8192,
               name: 'img/[name].[hash:8].[ext]',
+              replace: [
+                {
+                  test: /rdoc\.logo\.svg$/,
+                  path: paths.logoPath,
+                }
+              ]
             },
           },
           {
