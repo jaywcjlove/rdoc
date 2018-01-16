@@ -12,10 +12,10 @@ visible: true
   position: relative;
   background-color: #383838;
   margin: 0 -30px 20px -30px;
-  padding-top: 100px;
+  padding-top: 120px;
   padding-left: 59px;
   padding-right: 100px;
-  min-height: 300px;
+  min-height: 400px;
   color: #c1c1c1;
 }
 .jumbotron-title {
