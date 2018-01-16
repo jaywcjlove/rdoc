@@ -33,11 +33,17 @@ export default class Header extends PureComponent {
           </a>
         );
       }
-      if (item.props && item.props.isEmpty === true) return null;
+      if (item.props && item.props.isEmpty === true && (item.mdconf && !item.mdconf.redirect)) return null;
+
       const regx = new RegExp(`^/${item.name}`, 'g');
       const isActive = regx.test(pathname);
+      let toPath = item.name;
+
+      if (item && item.mdconf && item.mdconf.redirect) {
+        toPath = item.mdconf.redirect;
+      }
       return (
-        <Link key={index} to={`/${item.name}`} className={classNames({ active: isActive })} replace={`/${item.name}` === pathname} >
+        <Link key={index} to={`/${toPath}`} className={classNames({ active: isActive })} replace={`/${toPath}` === pathname} >
           {item.mdconf.title || item.name}
         </Link>
       );
