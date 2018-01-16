@@ -16,9 +16,8 @@ export default class Markdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      markdown: '',
+      markdownStr: 'loading ... ',
     };
-    this.components = new Map();
   }
   componentWillMount() {
     this.renderMarkdown();
@@ -33,7 +32,7 @@ export default class Markdown extends React.Component {
     }
     import(`__project_root__/.cache/md/${filename}.md`).then((data) => {
       this.setState({
-        markdown: data,
+        markdownStr: data,
       }, () => {
         let code = ReactDOM.findDOMNode(this);
         code = code.getElementsByTagName('code');
@@ -53,7 +52,7 @@ export default class Markdown extends React.Component {
         {title && layout !== 'IndexLayout' && <h1 id={title} className={styles.pageTitle}>{title}</h1>}
         <ReactMarkdown
           className={classNames('markdown', styles.markdown)}
-          source={this.state.markdown}
+          source={this.state.markdownStr}
           escapeHtml={false}
           allowNode={(node) => {
             if (node.type === 'html') {
