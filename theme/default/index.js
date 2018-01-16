@@ -66,10 +66,12 @@ export default function (Lazyload, props) {
         render={(routeProps) => {
           const { location: { pathname } } = routeProps;
           let curentRoute = props.routeData.filter(item => item.path === pathname);
-          let title = '';
+          let title = '-';
           if (curentRoute.length > 0) {
             curentRoute = curentRoute[0];
-            title = `${indexItem.mdconf && indexItem.mdconf.title} - ${curentRoute.mdconf.title || title}`;
+            if (indexItem.mdconf && indexItem.mdconf.title) {
+              title = `${curentRoute.mdconf.title || title} - ${indexItem.mdconf && indexItem.mdconf.title}`;
+            }
           }
           routeProps.indexProps = indexItem;
           return (
