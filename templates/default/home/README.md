@@ -19,17 +19,20 @@ visible: true
   color: #c1c1c1;
 }
 .jumbotron-title {
-  font-size: 30px;
+  font-size: 60px;
   font-weight: bold;
+  text-align: center;
+}
+.jumbotron-des {
+  text-align: center;
 }
 </style>
 <div class="jumbotron">
   <div class="jumbotron-title">RDoc </div>
-  <div>RDoc 是一套基于React的文档生成工具，用于生成React组件库文档或简单的博客网站</div>
+  <div class="jumbotron-des">RDoc 是一套基于React的文档生成工具，用于生成文档网站或简单的博客网站</div>
 </div>
 
-在开始之前，推荐先学习 Markdown语法，并正确安装和配置了 [Node.js](https://nodejs.org) v8.0 或以上。。
-
+在开始之前，推荐先学习 Markdown 语法，并正确安装和配置了 [Node.js](https://nodejs.org) v8.0 或以上。。
 
 用于生成React组件库文档或简单的博客网站
 
