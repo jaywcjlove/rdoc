@@ -1,5 +1,7 @@
-rdoc.png
 .cache
-package-lock.json
 .gitignore
+.editorconfig
+node_modules
+package-lock.json
 dist
+rdoc.png
