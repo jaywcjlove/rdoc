@@ -18,8 +18,6 @@ module.exports = function serve(program) {
   })
 };
 
-
-
 // Create the production build and print the deployment instructions.
 function build(program) {
   console.log('Creating an optimized production build...');

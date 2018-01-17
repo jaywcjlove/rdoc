@@ -9,27 +9,30 @@ const resolveApp = relativePath => PATH.resolve(appDirectory, relativePath);
 // rdoc 工具所在目录
 const resolveTool = relativePath => PATH.resolve(toolDirectory, relativePath);
 
-let appPackage = resolveApp('./package.json');
-appPackage = require(appPackage);
-
 // favicon
 const faviconPath = () => {
-  if (appPackage.rdoc && appPackage.rdoc.favicon
-    && FS.existsSync(PATH.resolve(appDirectory, appPackage.rdoc.favicon))) {
-    return PATH.resolve(appDirectory, appPackage.rdoc.favicon);
-  } else if (FS.existsSync(PATH.resolve(appDirectory, './favicon.ico'))) {
-    return PATH.resolve(appDirectory, './favicon.ico')
-  }
+  const _path = getCinfigFilePath('./favicon.ico', 'favicon');
+  if (_path) return _path;
   return resolveTool('../../theme/default/favicon.ico');
 }
 
 // get logo
 const logoPath = () => {
-  if (appPackage.rdoc && appPackage.rdoc.logo
-    && FS.existsSync(PATH.resolve(appDirectory, appPackage.rdoc.logo))){
-    return PATH.resolve(appDirectory, appPackage.rdoc.logo);
-  } else if (FS.existsSync(PATH.resolve(appDirectory, './logo.svg'))) {
-    return PATH.resolve(appDirectory, './logo.svg')
+  const _path = getCinfigFilePath('./logo.svg','logo');
+  if (_path) return _path;
+  return false;
+}
+
+function getCinfigFilePath(fileName,type) {
+  let appPackage = resolveApp('./package.json');
+  if (FS.existsSync(appPackage)) {
+    appPackage = require(appPackage);
+    if (appPackage.rdoc && appPackage.rdoc[type]
+      && FS.existsSync(PATH.resolve(appDirectory, appPackage.rdoc[type]))) {
+      return PATH.resolve(appDirectory, appPackage.rdoc[type]);
+    } else if (FS.existsSync(PATH.resolve(appDirectory, fileName))) {
+      return PATH.resolve(appDirectory, fileName)
+    }
   }
   return false;
 }
@@ -46,6 +49,7 @@ module.exports = {
   publicPath: '/',
   logoPath: logoPath(),
   // rdoc 工具所在目录
+  rdocPackage: resolveTool('../../package.json'),
   defaultNodeModules: resolveTool('node_modules'),
   defaultTemplatePath: resolveTool('../../templates/default'),
   defaultFaviconPath: faviconPath(),

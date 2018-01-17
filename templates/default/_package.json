@@ -14,6 +14,9 @@
     "react-doc",
     "react"
   ],
+  "dependencies": {
+    "rdoc": "{{rdocVersion}}"
+  },
   "author": "",
   "license": "MIT"
 }
