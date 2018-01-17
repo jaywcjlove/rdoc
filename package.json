@@ -57,7 +57,7 @@
     "postcss-loader": "^2.0.9",
     "raw-content-replace-loader": "^1.0.1",
     "raw-extend-loader": "^1.0.5",
-    "raw-tree-replace-loader": "^1.0.0",
+    "raw-tree-replace-loader": "^1.1.0",
     "rdoc-dev-utils": "^1.0.2",
     "react": "^16.2.0",
     "react-dev-utils": "^4.2.1",

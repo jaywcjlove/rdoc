@@ -22,6 +22,7 @@ module.exports = function (cmd) {
   config.entry = paths.appIndexJs;
   config.module.strictExportPresence = true;
   config.output.path = cmd.output;
+  config.output.filename = 'js/[hash:8].[name].js';
 
   config.module.loaders = config.module.loaders.map((item) => {
     if (item.oneOf) {
@@ -61,11 +62,12 @@ module.exports = function (cmd) {
                 dir: cmd.markdownPaths,
                 mdconf: true,
                 extensions: /\.md/,
+                relativePath: true,
               }
             }
           }
         ]
-      })
+      });
 
       loaders.push(
         // “postcss-loader”将autoprefixer应用到我们的CSS中。

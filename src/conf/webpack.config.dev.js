@@ -21,7 +21,7 @@ module.exports = function (cmd) {
   // 这不会产生真实的文件。
   // 这只是WebpackDevServer在开发中提供的虚拟路径。
   // 这是包含所有入口点的代码和Webpack运行时的JS包。
-  config.output.filename = '[name].js';
+  config.output.filename = 'js/[name][hash:base64:5].js';
 
   config.module.loaders = config.module.loaders.map((item)=>{
     if (item.oneOf){
@@ -61,11 +61,13 @@ module.exports = function (cmd) {
                 dir: cmd.markdownPaths,
                 mdconf: true,
                 extensions: /\.md/,
+                relativePath: true,
               }
             }
           }
         ]
-      })
+      });
+
       loaders.push({
         test: /\.(css|less)$/,
         use: [
@@ -100,7 +102,7 @@ module.exports = function (cmd) {
           },
           require.resolve('less-loader'),
         ],
-      })
+      });
 
       item.oneOf = loaders.concat(item.oneOf);
     }
