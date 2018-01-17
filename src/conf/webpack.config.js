@@ -76,7 +76,17 @@ module.exports = {
           },
           {
             test: /\.md$/,
-            loader: require.resolve('raw-extend-loader'),
+            use:[
+              require.resolve('raw-extend-loader'),
+              {
+                loader: require.resolve('raw-content-replace-loader'),
+                options: {
+                  path: PATH.join(paths.catchDirPath, './md'), // 需要替换的目录
+                  replace: paths.projectPath, // 替换成目标目录
+                  sep: /___/g,               // 文件名存储，文件夹+下划线间隔+文件名
+                }
+              }
+            ]
           },
           // “file-loader”确保这些资源由WebpackDevServer服务。
           // 当您导入资源时，您将获得（虚拟）文件名。
