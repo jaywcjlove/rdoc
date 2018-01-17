@@ -35,20 +35,6 @@ module.exports = {
         // 当没有加载器匹配时，它将返回到加载程序列表末尾的“file”加载器。
         oneOf: [
           {
-            test: /\.(js|jsx|mjs)$/,
-            exclude: [/node_modules/, /\.(cache)/],
-            use: [
-              {
-                loader: require.resolve('string-replace-loader'),
-                options: {
-                  multiple: [
-                    { search: '__project_root__', replace: paths.projectPath },
-                  ],
-                },
-              },
-            ],
-          },
-          {
             test: /\.(svg|png|bmp|jpg|jpeg|gif)$/,
             loader: require.resolve('url-replace-loader'),
             options: {
@@ -61,10 +47,6 @@ module.exports = {
                 }
               ]
             },
-          },
-          {
-            test: /\.md$/,
-            loader: require.resolve('raw-extend-loader'),
           },
           {
             test: /\.md$/,

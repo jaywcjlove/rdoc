@@ -32,6 +32,14 @@ module.exports = function (cmd) {
         exclude: [/node_modules/, /\.(cache)/],
         use: [
           {
+            loader: require.resolve('string-replace-loader'),
+            options: {
+              multiple: [
+                { search: '__project_root__', replace: paths.projectPath },
+              ],
+            },
+          },
+          {
             loader: require.resolve('babel-loader'),
             options: {
               // 不要包含多余的空格字符和行结束符。

@@ -32,6 +32,14 @@ module.exports = function (cmd) {
         exclude: [/node_modules/, /\.(cache)/],
         use: [
           {
+            loader: require.resolve('string-replace-loader'),
+            options: {
+              multiple: [
+                { search: '__project_root__', replace: paths.projectPath },
+              ],
+            },
+          },
+          {
             loader: require.resolve('babel-loader'),
             options: {
               // 这是webpack的“babel-loader”（不是Babel本身）的一个功能。
