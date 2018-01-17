@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://uiw-react.github.io">
+    <img width="150" src="theme/default/rdoc.logo.svg">
+  </a>
+</p>
+
 rdoc
 ---
 
@@ -5,11 +11,48 @@ rdoc
 
 Fast static site generator for React.
 
-```bash
-npm install rdoc -g   # Install rdoc
-rdoc init my-project  # Init project
+## Get Start
 
+1. Install
+
+```bash
+npm install rdoc -g
+```
+
+2. Init Project
+
+```bash
+rdoc init my-project  # Init project
+```
+
+3. Run website
+
+```bash
 cd my-project && npm start # Into the directory, start the service.
+```
+
+4. Compile output static HTML resources
+
+```bash
+npm run build
+```
+
+5. Configure the deployment URL in `package.json`
+
+```js
+{
+  "scripts": {
+    "deploy": "rdoc --publish <your repo url>"
+    ...
+  },
+  ...
+}
+```
+
+6. Deploy to Github's `gh-pages` branch
+
+```bash
+npm run deploy
 ```
 
 <div align="center">
