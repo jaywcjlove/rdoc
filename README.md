@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://react-doc.github.io">
-    <img width="150" src="theme/default/rdoc.logo.svg">
+    <img width="150" src="theme/default/rdoc.logo.svg?sanitize=true">
   </a>
 </p>
 
