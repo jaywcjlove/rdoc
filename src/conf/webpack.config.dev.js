@@ -26,33 +26,6 @@ module.exports = function (cmd) {
   config.module.loaders = config.module.loaders.map((item)=>{
     if (item.oneOf){
       const loaders = [];
-      loaders.push({
-        // Process JS with Babel.
-        test: /\.(js|jsx)$/,
-        exclude: [/node_modules/, /\.(cache)/],
-        use: [
-          {
-            loader: require.resolve('string-replace-loader'),
-            options: {
-              multiple: [
-                { search: '__project_root__', replace: paths.projectPath },
-              ],
-            },
-          },
-          {
-            loader: require.resolve('babel-loader'),
-            options: {
-              // 这是webpack的“babel-loader”（不是Babel本身）的一个功能。
-              // 它启用缓存结果./node_modules/.cache/babel-loader/
-              // 用于更快重建的目录。
-              cacheDirectory: true,
-              // https://stackoverflow.com/questions/29576341/what-does-the-code-generator-has-deoptimised-the-styling-of-some-file-as-it-e
-              // compact: false,
-              // allowImportExportEverywhere: true,
-            },
-          },
-        ],
-      });
 
       loaders.push({
         test: /\.md$/,
