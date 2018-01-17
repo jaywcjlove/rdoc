@@ -12,7 +12,7 @@ module.exports = {
     strictExportPresence: true,
     loaders: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|mjs)$/,
         exclude: [/node_modules/, /\.(cache)/],
         enforce: 'pre',
         use: [
@@ -35,8 +35,7 @@ module.exports = {
         // 当没有加载器匹配时，它将返回到加载程序列表末尾的“file”加载器。
         oneOf: [
           {
-            // Process JS with Babel.
-            test: /\.(js|jsx)$/,
+            test: /\.(js|jsx|mjs)$/,
             exclude: [/node_modules/, /\.(cache)/],
             use: [
               {
@@ -47,25 +46,13 @@ module.exports = {
                   ],
                 },
               },
-              {
-                loader: require.resolve('babel-loader'),
-                options: {
-                  // 这是webpack的“babel-loader”（不是Babel本身）的一个功能。
-                  // 它启用缓存结果./node_modules/.cache/babel-loader/
-                  // 用于更快重建的目录。
-                  cacheDirectory: true,
-                  // https://stackoverflow.com/questions/29576341/what-does-the-code-generator-has-deoptimised-the-styling-of-some-file-as-it-e
-                  // compact: false,
-                  // allowImportExportEverywhere: true,
-                },
-              },
             ],
           },
           {
             test: /\.(svg|png|bmp|jpg|jpeg|gif)$/,
             loader: require.resolve('url-replace-loader'),
             options: {
-              limit: 8192,
+              limit: 10000,
               name: 'img/[name].[hash:8].[ext]',
               replace: [
                 {

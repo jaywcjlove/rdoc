@@ -8,6 +8,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const paths = require('./paths');
 const config = require('./webpack.config');
 
+// 断言这只是为了安全。
+// React的开发版本很慢，不适合生产。
+if (process.env.NODE_ENV !== 'production') {
+  throw new Error('Production builds must have NODE_ENV=production.');
+}
+
 // 注意：在这里定义，因为它将被使用不止一次。
 const cssFilename = 'css/[name].[contenthash:8].css';
 
@@ -20,7 +26,22 @@ module.exports = function (cmd) {
   config.module.loaders = config.module.loaders.map((item) => {
     if (item.oneOf) {
       const loaders = [];
-
+      loaders.push({
+        // Process JS with Babel.
+        test: /\.(js|jsx|mjs)$/,
+        exclude: [/node_modules/, /\.(cache)/],
+        use: [
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              // 不要包含多余的空格字符和行结束符。
+              // 设置为“auto”时，对于大于500KB的输入大小，设置为"true"。
+              // https://babeljs.io/docs/usage/api/#options
+              compact: true,
+            },
+          },
+        ],
+      });
       loaders.push({
         test: /\.json$/,
         use: [
