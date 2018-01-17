@@ -1,3 +1,4 @@
+const PATH = require('path');
 const paths = require('./paths');
 
 module.exports = {
@@ -76,8 +77,11 @@ module.exports = {
           },
           {
             test: /\.md$/,
+            loader: require.resolve('raw-extend-loader'),
+          },
+          {
+            test: /\.md$/,
             use:[
-              require.resolve('raw-extend-loader'),
               {
                 loader: require.resolve('raw-content-replace-loader'),
                 options: {
