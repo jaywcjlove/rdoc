@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://uiw-react.github.io">
+  <a href="https://react-doc.github.io">
     <img width="150" src="theme/default/rdoc.logo.svg">
   </a>
 </p>
