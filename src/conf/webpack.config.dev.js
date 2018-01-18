@@ -140,11 +140,5 @@ module.exports = function (cmd) {
     hints: false,
   }
 
-  // // 下一行未在dev中使用，但WebpackDevServer没有崩溃：
-  // path: paths.appBuild,
-  // console.log('rdocPath:', JSON.stringify(config,null,2));
-  // console.log('rdocPath:', paths);
-  // console.log('rdocPath:', config);
-
   return config;
 }

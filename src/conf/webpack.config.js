@@ -4,7 +4,7 @@ const paths = require('./paths');
 module.exports = {
   entry: {},
   output: {
-    path: paths.appBuild,
+    path: paths.appBuildDist,
     publicPath: paths.publicPath,
     chunkFilename: 'js/[hash:8].[name].js',
   },

@@ -41,7 +41,7 @@ module.exports = {
   // Markdown 所在目录
   appPackage: resolveApp('./package.json'),
   appNodeModules: resolveApp('node_modules'),
-  appBuild: resolveApp('dist'),
+  appBuildDist: resolveApp('.rdoc-dist'),
   catchDirPath: resolveApp('.cache'),
   docTreePath: resolveApp('.cache/.reactdoc.tree.json'),
   watchFilePath: resolveApp('.cache/watch-dir.js'),
