@@ -6,35 +6,63 @@ visible: true
 
 <style>
 body, html { background: #fff; }
-.markdown{
-  padding: 0 30px;
-}
+.markdown{ padding: 0 30px; }
 .jumbotron {
   position: absolute;
+  background-color: #383838;
   left: 0;
   right: 0;
-  background-color: #383838;
   padding-top: 100px;
-  min-height: 300px;
+  min-height: 380px;
   color: #c1c1c1;
 }
-.jumbotron-block {
-  min-height: 330px;
-}
+.jumbotron-block { min-height: 400px; }
 .jumbotron-warpper {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  text-align: center;
 }
 .jumbotron-title {
   font-size: 30px;
   font-weight: bold;
+  padding-bottom: 20px;
+}
+.jumbotron-des {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 300;
+  margin-bottom: 30px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+.jumbotron .jumbotron-btn {
+  display: inline-block;
+  color: #333;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  background-color: #fff;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.jumbotron-btn:hover {
+  background-color: #bbb;
+  color: #333;
+}
+.jumbotron-btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
 }
 </style>
 <div class="jumbotron">
   <div class="jumbotron-warpper">
     <div class="jumbotron-title">RDoc </div>
-    <div class="jumbotron-des">RDoc 是一套基于React的文档生成工具，用于生成文档网站或简单的博客网站</div>
+    <div class="jumbotron-des">RDoc 是一个文档生成工具，用于生成文档网站或简单的博客网站。<br/>简单到你只需写 Markdown 文件就可以帮助你生成网站。<br/>同时可以方便的集成到你的项目工程中。</div>
+    <a class="jumbotron-btn" href="#/introduce/init-project">快速开始</a>
   </div>
 </div>
 <div class="jumbotron-block"> </div>
@@ -50,7 +78,6 @@ rdoc init my-project  # 初始化项目
 cd my-project && npm start # 进入工程，启动服务
 ```
 
-
 ### Command
 
 ```shell
@@ -62,7 +89,7 @@ Options:
 
   -i, init [path]        Create an empty website or reinitialize an existing one.
   -d, --doc <path>       Other documents generated.
-  -o, --output <path>    Writes the compiled file to the disk directory. (default: dist)
+  -o, --output <path>    Writes the compiled file to the disk directory. (default: .rdoc-dist)
   -p, --port [number]    The port. (default: 5858)
   -h, --host [host]      The host. (default: 0.0.0.0)
   -b, --branch <branch>  Name of the branch you are pushing to. (default: gh-pages)
@@ -80,5 +107,5 @@ Examples:
   $ rdoc -d tutorial,doc --clean --build
   $ rdoc -p 2323  -d doc --clean
   $ rdoc -h 0.0.0.0 -d doc --clean
-  $ rdoc --publish https://git_repo.git --branch master
+  $ rdoc --publish https://<your-git-repo>.git --branch master
 ```
