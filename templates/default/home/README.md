@@ -5,32 +5,39 @@ visible: true
 -->
 
 <style>
+body, html { background: #fff; }
 .markdown{
   padding: 0 30px;
 }
 .jumbotron {
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
   background-color: #383838;
-  margin: 0 -30px 20px -30px;
-  padding-top: 120px;
-  padding-left: 59px;
-  padding-right: 100px;
-  min-height: 400px;
+  padding-top: 100px;
+  min-height: 300px;
   color: #c1c1c1;
 }
-.jumbotron-title {
-  font-size: 60px;
-  font-weight: bold;
+.jumbotron-block {
+  min-height: 330px;
+}
+.jumbotron-warpper {
+  max-width: 1200px;
+  margin: 0 auto;
   text-align: center;
 }
-.jumbotron-des {
-  text-align: center;
+.jumbotron-title {
+  font-size: 30px;
+  font-weight: bold;
 }
 </style>
 <div class="jumbotron">
-  <div class="jumbotron-title">RDoc </div>
-  <div class="jumbotron-des">RDoc 是一套基于React的文档生成工具，用于生成文档网站或简单的博客网站</div>
+  <div class="jumbotron-warpper">
+    <div class="jumbotron-title">RDoc </div>
+    <div class="jumbotron-des">RDoc 是一套基于React的文档生成工具，用于生成文档网站或简单的博客网站</div>
+  </div>
 </div>
+<div class="jumbotron-block"> </div>
 
 在开始之前，推荐先学习 Markdown 语法，并正确安装和配置了 [Node.js](https://nodejs.org) v8.0 或以上。。
 
