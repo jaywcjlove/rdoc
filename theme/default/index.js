@@ -61,10 +61,18 @@ export default function (Lazyload, props) {
 
   return (
     <Switch>
-      <Route path="/404" render={routeProps => <NoMatch {...routeProps} {...props} />} />
+      <Route
+        path="/404"
+        render={routeProps => (
+          <DocumentTitle title="404">
+            <NoMatch {...routeProps} {...props} />
+          </DocumentTitle>
+        )}
+      />
       <Route path="/"
         render={(routeProps) => {
           const { location: { pathname } } = routeProps;
+          routeProps.indexProps = indexItem;
           let curentRoute = props.routeData.filter(item => item.path === pathname);
           let title = [];
           if (curentRoute.length > 0) {
@@ -76,8 +84,9 @@ export default function (Lazyload, props) {
               title.push(indexItem.mdconf.title);
             }
             title = title.length > 1 ? title.join(' - ') : title.join('');
+          } else {
+            title = '404';
           }
-          routeProps.indexProps = indexItem;
           return (
             <DocumentTitle title={title}>
               {pathname === '/' ?
