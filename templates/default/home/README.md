@@ -6,19 +6,20 @@ visible: true
 
 <style>
 body, html { background: #fff; }
-.markdown{ padding: 0 30px; }
+.markdown{ padding: 0 20px; }
 .jumbotron {
   position: absolute;
   background-color: #383838;
   left: 0;
   right: 0;
-  padding-top: 100px;
+  padding-top: 80px;
   min-height: 380px;
   color: #c1c1c1;
 }
 .jumbotron-block { min-height: 400px; }
 .jumbotron-warpper {
-  max-width: 1100px;
+  max-width: 1200px;
+  padding: 0 30px;
   margin: 0 auto;
 }
 .jumbotron-title {
@@ -41,7 +42,6 @@ body, html { background: #fff; }
   white-space: nowrap;
   vertical-align: middle;
   user-select: none;
-  border: 1px solid transparent;
   background-color: #fff;
   padding: .375rem .75rem;
   font-size: 1rem;
