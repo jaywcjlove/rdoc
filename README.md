@@ -70,7 +70,7 @@ Options:
 
   -i, init [path]        Create an empty website or reinitialize an existing one.
   -d, --doc <path>       Other documents generated.
-  -o, --output <path>    Writes the compiled file to the disk directory. (default: dist)
+  -o, --output <path>    Writes the compiled file to the disk directory. (default: .rdoc-dist)
   -p, --port [number]    The port. (default: 5858)
   -h, --host [host]      The host. (default: 0.0.0.0)
   -b, --branch <branch>  Name of the branch you are pushing to. (default: gh-pages)
@@ -88,7 +88,7 @@ Examples:
   $ rdoc -d tutorial,doc --clean --build
   $ rdoc -p 2323  -d doc --clean
   $ rdoc -h 0.0.0.0 -d doc --clean
-  $ rdoc --publish https://git_repo.git --branch master
+  $ rdoc --publish https://<your-git-repo>.git --branch master
 ```
 ### Development
 
@@ -116,7 +116,7 @@ Open your browser and visit http://localhost:5858
 ```bash
 .
 ├── README.md
-├── dist
+├── .rdoc-dist
 ├── package.json
 ├── src
 │   ├── build.js

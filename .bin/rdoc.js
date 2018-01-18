@@ -32,7 +32,7 @@ program
     console.log('    $ rdoc -d tutorial,doc --clean --build');
     console.log('    $ rdoc -p 2323  -d doc --clean');
     console.log('    $ rdoc -h 0.0.0.0 -d doc --clean');
-    console.log('    $ rdoc --publish https://git_repo.git --branch master');
+    console.log('    $ rdoc --publish https://<your-git-repo>.git --branch master');
     console.log();
   })
   .parse(process.argv);
