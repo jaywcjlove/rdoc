@@ -9,7 +9,11 @@ rdoc
 
 [![Join the chat at https://gitter.im/j-rdoc/Lobby](https://badges.gitter.im/j-rdoc/Lobby.svg)](https://gitter.im/j-rdoc/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Fast static site generator for React.
+Blazing-fast static site generator for React, Just write Markdown file. Visit the [react-doc.github.io](https://react-doc.github.io) website for more information.
+
+<div align="center">
+  <img src="./rdoc.png"> 
+</div>
 
 ## Get Start
 
@@ -54,10 +58,6 @@ npm run build
 ```bash
 npm run deploy
 ```
-
-<div align="center">
-  <img src="./rdoc.png"> 
-</div>
 
 ### Command
 
