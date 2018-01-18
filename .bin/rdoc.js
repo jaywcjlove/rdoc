@@ -15,7 +15,7 @@ program
   .description('Fast static site generator for React.')
   .option('-i, init [path]', 'Create an empty website or reinitialize an existing one.')
   .option('-d, --doc <path>', 'Other documents generated.')
-  .option('-o, --output <path>', 'Writes the compiled file to the disk directory.', 'dist')
+  .option('-o, --output <path>', 'Writes the compiled file to the disk directory.', '.rdoc-dist')
   .option('-p, --port [number]', 'The port.', 5858)
   .option('-h, --host [host]', 'The host.', '0.0.0.0')
   .option('-b, --branch <branch>', 'Name of the branch you are pushing to.', 'gh-pages')

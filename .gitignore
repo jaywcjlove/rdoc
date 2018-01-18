@@ -1,5 +1,5 @@
 node_modules
-dist
+.rdoc-dist
 package-lock.json
 .cache
 .DS_Store
