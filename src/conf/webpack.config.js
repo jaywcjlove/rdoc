@@ -22,10 +22,11 @@ module.exports = {
           {
             // 首先运行linter。
             // 在Babel处理js之前做这一点很重要。
-            // options: {
-            //   formatter: eslintFormatter,
-            //   eslintPath: require.resolve('eslint'),
-            // },
+            options: {
+              // formatter: eslintFormatter,
+              eslintPath: require.resolve('eslint'),
+              configFile: require.resolve('../../.eslintrc.js'),
+            },
             loader: require.resolve('eslint-loader'),
           },
         ],

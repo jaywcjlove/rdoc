@@ -36,17 +36,13 @@ module.exports = function (cmd) {
             options: {
               multiple: [
                 { search: '__project_root__', replace: paths.projectPath },
+                { search: '__project_theme__', replace: paths.appThemePath },
               ],
             },
           },
           {
             loader: require.resolve('babel-loader'),
-            options: {
-              // 这是webpack的“babel-loader”（不是Babel本身）的一个功能。
-              // 它启用缓存结果./node_modules/.cache/babel-loader/
-              // 用于更快重建的目录。
-              cacheDirectory: true,
-            },
+            options: require('../../.babelrc'),
           },
         ],
       });

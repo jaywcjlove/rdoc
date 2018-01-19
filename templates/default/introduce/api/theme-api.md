@@ -35,12 +35,14 @@ import(`__project_root__/.cache/md/${filename}.md`).then((data) => {
 });
 ```
 
-## Markdown文件索引
+## Markdown 文件索引
 
 那你需要建立一个 `替身` 文件 `rdoc.tree.data.json`，引用替身文件，就可以获取到目录索引内容，这个在编译的时候会自动返回文件索引的 `json`。
 
-> ⚠️ 替身文件名字，必须取名 `rdoc.tree.data.json`。 
-> ⚠️ 这个文件是必须建立，引用，这样可以渲染菜单。   
+> ⚠️ 替身文件名字，必须取名 `rdoc.tree.data.json`。   
+> ⚠️ 这个文件是必须建立，引用，这样可以渲染菜单。  
+> ⚠️ rdoc v1.3.0 以后版本不需要，如果你有同名文件会被替换成，Markdown 文件索引。  
+> ⚠️ Markdown 文件索引，会在入口函数传入。
 
 ```js
 import menuSource from './rdoc.tree.data.json';
@@ -63,9 +65,18 @@ export default function (Lazyload, props) {
 
 ## 两个入口参数
 
+`props` 提供路由索引，和 Markdown 文件索引信息。`Lazyload` 为懒加载方法。
+
 ### Lazyload
 
-文档功能工具提供的，懒加载方法
+文档功能工具提供的，懒加载方法，下面方法为路由添加 `component` 并传入相应参数。
+
+```js
+props.routeData.map((item) => {
+  const Pages = Lazyload(() => import('./routes/Pages'), {...item,...props});
+  return item;
+});
+```
 
 ### props
 
