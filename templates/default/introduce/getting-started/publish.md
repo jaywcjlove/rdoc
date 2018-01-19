@@ -59,4 +59,4 @@ $ npm run build
 $ rdoc --publish https://github.com/react-doc/react-doc.github.io.git --branch master
 ```
 
-如果全局安装了 `rodc` 工具，直接可以将上面命令放到命令行运行，记得在项目的根目录下运行哦。
+如果全局安装了 `rdoc` 工具，直接可以将上面命令放到命令行运行，记得在项目的根目录下运行哦。

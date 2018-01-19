@@ -12,7 +12,7 @@ module.exports = function (params) {
   // 最后一个版本号替换成 x , 当发生变化最后一个版本安装最新版本
   const RDOC_VERSION = rdocpkg.version.split('.').slice(0, 2).concat('x').join('.')
 
-  // 目录不存在生成目录
+  // 输出目录清空
   if (!FS.pathExistsSync(outDir)) {
     FS.ensureDirSync(outDir);
   }
