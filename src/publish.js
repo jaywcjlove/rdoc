@@ -1,6 +1,7 @@
 const PATH = require('path');
 const gitP = require('simple-git');
 const rimraf = require('rimraf');
+const loading = require('loading-cli');
 
 module.exports = function server(cmd) {
 
@@ -9,13 +10,19 @@ module.exports = function server(cmd) {
 
   console.log('  Start public to your git repo'.green)
   console.log(`  ${cmd.publish}\n`.green)
-  console.log('  Please wait ...\n'.blue_bt)
+  loading({
+    "text": "Please wait ...".blue,
+    "color": "blue",
+    "interval": 100,
+    "stream": process.stdout,
+  }).start();
 
   git.init()
     .add('./*')
     .commit(`Update website, ${new Date()}!`)
     .addRemote('origin', cmd.publish)
     .push(['-f', 'origin', cmd.branch],(err,message)=>{
+      loading.stop();
       if (err) {
         console.log('error:'.red, err);
       } else {
