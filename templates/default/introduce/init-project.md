@@ -30,6 +30,15 @@ $ rdoc init my-project
 ```shell
 $ cd my-project
 $ npm start
+
+## Compiled successfully!
+## 
+## You can now view rdoc in the browser.
+## 
+##   Local:            http://localhost:5858/
+##   On Your Network:  http://192.168.188.109:5858/
+## Note that the development build is not optimized.
+## To create a production build, use npm run build.
 ```
 
 会自动打开网站，同时命令行会提示你，打开的网址，这样你就可以开始写 Markdown 了，并且可以实时预览你的网站。
