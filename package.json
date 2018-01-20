@@ -8,8 +8,8 @@
   },
   "scripts": {
     "deploy": ".bin/rdoc.js --publish https://github.com/react-doc/react-doc.github.io.git --branch master",
-    "doc": ".bin/rdoc.js -d templates/default/home,templates/default/introduce,templates/default/faq,templates/default/about,templates/default/github --clean",
-    "doc:build": ".bin/rdoc.js -d templates/default/home,templates/default/introduce,templates/default/faq,templates/default/about,templates/default/github --clean --build"
+    "start": ".bin/rdoc.js -d templates/default/home,templates/default/introduce,templates/default/faq,templates/default/about,templates/default/github --clean",
+    "build": ".bin/rdoc.js -d templates/default/home,templates/default/introduce,templates/default/faq,templates/default/about,templates/default/github --clean --build"
   },
   "repository": {
     "type": "git",

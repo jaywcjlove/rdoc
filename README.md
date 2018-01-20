@@ -106,7 +106,7 @@ To develop, run the self-reloading build:
 # Run the app
 # Restart the app automatically every time code changes. 
 # Useful during development.
-$ npm run doc
+$ npm run start
 ```
 
 Open your browser and visit http://localhost:5858
