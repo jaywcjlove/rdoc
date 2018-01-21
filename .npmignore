@@ -1,6 +1,7 @@
 .cache
 .gitignore
 .editorconfig
+.rdoc-dist
 node_modules
 package-lock.json
 dist
