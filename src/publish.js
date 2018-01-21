@@ -10,7 +10,7 @@ module.exports = function server(cmd) {
 
   console.log('  Start public to your git repo'.green)
   console.log(`  ${cmd.publish}\n`.green)
-  loading({
+  const load = loading({
     "text": "Please wait ...".blue,
     "color": "blue",
     "interval": 100,
@@ -21,8 +21,8 @@ module.exports = function server(cmd) {
     .add('./*')
     .commit(`Update website, ${new Date()}!`)
     .addRemote('origin', cmd.publish)
-    .push(['-f', 'origin', cmd.branch],(err,message)=>{
-      loading.stop();
+    .push(['-f', 'origin', cmd.branch], (err, message) => {
+      load.stop();
       if (err) {
         console.log('error:'.red, err);
       } else {
