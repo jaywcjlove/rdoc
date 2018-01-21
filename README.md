@@ -15,33 +15,39 @@ Blazing-fast static site generator for React, Just write Markdown file. Visit th
   <img src="./rdoc.png"> 
 </div>
 
-## Get Start
+## Getting Started
 
-1. Install
+It's really easy to get started with **rdoc**. Just install it as a module and run it to create your website.
+
+Let's get you started!
+
+### Install
+
+Install `rdoc` globally on your system. You’ll need to have Node >= 8 on your local development machine. You can use [n](https://github.com/tj/n#installation) to easily switch Node versions between different projects.
 
 ```bash
 npm install rdoc -g
 ```
 
-2. Init Project
+1. Init Project
 
 ```bash
 rdoc init my-project  # Init project
 ```
 
-3. Run website
+2. Run website
 
 ```bash
 cd my-project && npm start # Into the directory, start the service.
 ```
 
-4. Compile output static HTML resources
+3. Compile output static HTML resources
 
 ```bash
 npm run build
 ```
 
-5. Configure the deployment URL in `package.json`
+4. Configure the deployment URL in `package.json`
 
 ```js
 {
@@ -53,7 +59,7 @@ npm run build
 }
 ```
 
-6. Deploy to Github's `gh-pages` branch
+5. Deploy to Github's `gh-pages` branch
 
 ```bash
 npm run deploy
