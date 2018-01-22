@@ -10,7 +10,12 @@ hljs.configure({
   classPrefix: '', // don't append class prefix
 });
 
-const formatPath = path => path.replace(/^\//, '').replace(/\.md$/, '').split('/').join('___');
+const formatPath = path =>
+  path.replace(/^(\/|\\)/, '')
+    .replace(/\.md$/, '')
+    .replace(/\\/g, '/')
+    .split('/')
+    .join('___');
 
 export default class Markdown extends React.Component {
   constructor(props) {

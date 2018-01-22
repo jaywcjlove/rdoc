@@ -1,4 +1,5 @@
 const PATH = require('path');
+const UPATH = require('upath');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -22,8 +23,7 @@ module.exports = function (cmd) {
   // 这只是WebpackDevServer在开发中提供的虚拟路径。
   // 这是包含所有入口点的代码和Webpack运行时的JS包。
   config.output.filename = 'js/[hash:8].[name].js';
-
-  config.module.loaders = config.module.loaders.map((item)=>{
+  config.module.loaders = config.module.loaders.map((item) => {
     if (item.oneOf){
       const loaders = [];
       loaders.push({
@@ -35,8 +35,8 @@ module.exports = function (cmd) {
             loader: require.resolve('string-replace-loader'),
             options: {
               multiple: [
-                { search: '__project_root__', replace: paths.projectPath },
-                { search: '__project_theme__', replace: paths.appThemePath },
+                { search: '__project_root__', replace: UPATH.normalizeSafe(paths.projectPath) },
+                { search: '__project_theme__', replace: UPATH.normalizeSafe(paths.appThemePath) },
               ],
             },
           },

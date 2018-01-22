@@ -1,4 +1,5 @@
 const PATH = require('path');
+const UPATH = require('upath');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -36,8 +37,8 @@ module.exports = function (cmd) {
             loader: require.resolve('string-replace-loader'),
             options: {
               multiple: [
-                { search: '__project_root__', replace: paths.projectPath },
-                { search: '__project_theme__', replace: paths.appThemePath },
+                { search: '__project_root__', replace: UPATH.normalizeSafe(paths.projectPath) },
+                { search: '__project_theme__', replace: UPATH.normalizeSafe(paths.appThemePath) },
               ],
             },
           },

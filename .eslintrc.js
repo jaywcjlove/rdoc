@@ -17,6 +17,7 @@ const eslintrc = {
     parser: 'babel-eslint',
   },
   "rules": {
+    "linebreak-style": 0,
     "func-names": 0,
     "sort-imports": 0,
     "arrow-body-style": 0,
