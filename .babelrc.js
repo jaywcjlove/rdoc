@@ -1,6 +1,12 @@
 const babelrc = {
   "presets": [
-    "es2015",
+    [
+      "env", {
+        "targets": {
+          "browsers": ["last 2 versions", "ie >= 10"]
+        }
+      }
+    ],
     "react"
   ],
   "plugins": [
