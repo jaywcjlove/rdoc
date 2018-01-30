@@ -13,7 +13,7 @@ const eslintrc = {
     "react",
     "import"
   ],
-  parserOptions: {
+  "parserOptions": {
     parser: 'babel-eslint',
   },
   "rules": {
