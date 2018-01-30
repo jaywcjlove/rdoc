@@ -11,7 +11,11 @@ sort: 2
 
 ```shell
 $ npm install rdoc -g
+## /usr/local/bin/rdoc -> /usr/local/lib/node_modules/rdoc/.bin/rdoc.js
+## /usr/local/bin/rdoc-cli -> /usr/local/lib/node_modules/rdoc/.bin/rdoc.js
 ```
+
+⚠️ 提供了一个 `rdoc-cli` 命令，跟 `rdoc` 命令是一样的，目的是解决 `Mac` 系统自带的 `Ruby` 命令 `rdoc` 冲突。
 
 ## 开发模式安装
 

@@ -67,13 +67,18 @@ body, html { background: #fff; }
 </div>
 <div class="jumbotron-block"> </div>
 
-在开始之前，推荐先学习 Markdown 语法，并正确安装和配置了 [Node.js](https://nodejs.org) v8.0 或以上。。
+在开始之前，推荐先学习 Markdown 语法，并正确安装和配置了 [Node.js](https://nodejs.org) v8.0 或以上。
 
-用于生成React组件库文档或简单的博客网站
+主要用于快速生成文档工具或简单的网站，只需要写Markdown文件既可。
 
 ```bash
 npm install rdoc -g   # 安装工具
+# /usr/local/bin/rdoc -> /usr/local/lib/node_modules/rdoc/.bin/rdoc.js
+# /usr/local/bin/rdoc-cli -> /usr/local/lib/node_modules/rdoc/.bin/rdoc.js
+
 rdoc init my-project  # 初始化项目
+# 也可以使用 rdoc-cli 命令，跟 rdoc 命令是一样的
+# 增加 用 rdoc-cli 命令，目的是解决 Mac 系统自带的 Ruby 命令 rdoc 冲突
 
 cd my-project && npm start # 进入工程，启动服务
 ```

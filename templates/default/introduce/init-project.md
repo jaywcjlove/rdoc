@@ -12,7 +12,9 @@ RDoc 是一套基于基于 [Webpack](https://webpack.js.org/)，[React](https://
 1. 全局安装
 
 ```shell
-$ npm install rdoc -g
+$ npm install rdoc -g # 安装工具
+## /usr/local/bin/rdoc -> /usr/local/lib/node_modules/rdoc/.bin/rdoc.js
+## /usr/local/bin/rdoc-cli -> /usr/local/lib/node_modules/rdoc/.bin/rdoc.js
 ```
 
 2. 初始化工程
@@ -20,7 +22,11 @@ $ npm install rdoc -g
 可以通过一条命令生成，一个初始文档网站工程。初始化工程，里面会包含一个 `package.json`，`rdoc` 工具会被当做依赖放入其中，避免 `rdoc` 工具升级带来的问题。
 
 ```shell
-$ rdoc init my-project
+$ rdoc init my-project # 初始化项目
+## or
+$ rdoc-cli init my-project
+## 也可以使用 rdoc-cli 命令，跟 rdoc 命令是一样的
+## 增加 用 rdoc-cli 命令，目的是解决 Mac 系统自带的 Ruby 命令 rdoc 冲突
 ```
 
 3. 运行网站
@@ -28,8 +34,9 @@ $ rdoc init my-project
 初始化工程，其实就是 `rdoc` 工具的文档，里面 Markdown 都是写好的，直接运行下面命令，可看效果
 
 ```shell
-$ cd my-project
-$ npm start
+$ cd my-project  # 进入初始化的工程目录
+$ npm install    # 安装依赖，这里依赖了 rdoc 版本，避免 rdoc 升级带来的问题。
+$ npm start      # 启动服务
 
 ## Compiled successfully!
 ## 

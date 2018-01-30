@@ -27,18 +27,26 @@ Install `rdoc` globally on your system. You’ll need to have Node >= 8 on your 
 
 ```bash
 npm install rdoc -g
+
+# /usr/local/bin/rdoc -> /usr/local/lib/node_modules/rdoc/.bin/rdoc.js
+# /usr/local/bin/rdoc-cli -> /usr/local/lib/node_modules/rdoc/.bin/rdoc.js
 ```
+
+Added `rdoc-cli` command to resolve Mac integration `rdoc` command conflicts.
 
 1. Init Project
 
 ```bash
 rdoc init my-project  # Init project
+# or
+rdoc-cli init my-project 
 ```
 
 2. Run website
 
 ```bash
-cd my-project && npm start # Into the directory, start the service.
+cd my-project && npm install # Install dependencies.
+npm start # Into the directory, start the service.
 ```
 
 3. Compile output static HTML resources
