@@ -10,8 +10,10 @@ const Servers = require('../src/server');
 const Build = require('../src/build');
 const Publish = require('../src/publish');
 const paths = require('../src/conf/paths');
+const pkg = require('../package.json')
 
 program
+  .version(pkg.version, '-v, --version')
   .description('Fast static site generator for React.')
   .option('-i, init [path]', 'Create an empty website or reinitialize an existing one.')
   .option('-d, --doc <path>', 'Other documents generated.')
