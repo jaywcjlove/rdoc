@@ -4,7 +4,8 @@
   "description": "Blazing-fast static site generator for React, Just write Markdown file.",
   "homepage": "https://react-doc.github.io",
   "bin": {
-    "rdoc": ".bin/rdoc.js"
+    "rdoc": ".bin/rdoc.js",
+    "rdoc-cli": ".bin/rdoc.js"
   },
   "scripts": {
     "deploy": "node .bin/rdoc.js --publish https://github.com/react-doc/react-doc.github.io.git --branch master",
