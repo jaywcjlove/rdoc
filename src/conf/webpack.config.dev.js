@@ -8,6 +8,7 @@ const CreateSpareWebpackPlugin = require('create-spare-webpack-plugin');
 const config = require('./webpack.config');
 const paths = require('./paths');
 
+
 module.exports = function (cmd) {
   config.entry = [
     require.resolve('webpack-hot-dev-clients/webpackHotDevClient'),
@@ -29,7 +30,7 @@ module.exports = function (cmd) {
       loaders.push({
         // Process JS with Babel.
         test: /\.(js|jsx|mjs)$/,
-        exclude: [/node_modules/, /\.(cache)/],
+        include: /node_modules\/rdoc\//,
         use: [
           {
             loader: require.resolve('string-replace-loader'),
