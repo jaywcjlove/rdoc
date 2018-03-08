@@ -56,6 +56,16 @@ function getCinfigFilePath(fileName,type) {
   return false;
 }
 
+
+const modPath = resolveTool('../../node_modules');
+function getExcludeFoldersRegExp() {
+  if (!FS.existsSync(modPath)) return [];
+  let regxExc = FS.readdirSync(modPath);
+  regxExc = regxExc.filter(item => item !== 'rdoc');
+  regxExc = regxExc.map(item => new RegExp('node_modules/' + item));
+  return regxExc;
+}
+
 module.exports = {
   // Markdown 所在目录
   appThemePath: getThemePath(),
@@ -69,8 +79,9 @@ module.exports = {
   publicPath: '/',
   logoPath: logoPath(),
   // rdoc 工具所在目录
+  getExcludeFoldersRegExp: getExcludeFoldersRegExp(),
   rdocPackage: resolveTool('../../package.json'),
-  defaultNodeModules: resolveTool('node_modules'),
+  defaultNodeModules: modPath,
   defaultTemplatePath: resolveTool('../../templates/default'),
   defaultFaviconPath: faviconPath(),
   defaultHTMLPath: resolveTool('../../theme/default/index.html'),

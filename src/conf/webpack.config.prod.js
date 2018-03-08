@@ -31,7 +31,7 @@ module.exports = function (cmd) {
       loaders.push({
         // Process JS with Babel.
         test: /\.(js|jsx|mjs)$/,
-        include: /node_modules\/rdoc\//,
+        exclude: paths.getExcludeFoldersRegExp.concat(/\.(cache)/),
         use: [
           {
             loader: require.resolve('string-replace-loader'),
