@@ -62,7 +62,13 @@ function getExcludeFoldersRegExp() {
   if (!FS.existsSync(modPath)) return [];
   let regxExc = FS.readdirSync(modPath);
   regxExc = regxExc.filter(item => item !== 'rdoc');
-  regxExc = regxExc.map(item => new RegExp('node_modules/' + item));
+  regxExc = regxExc.map(item => {
+    let rgxPath = 'node_modules' + PATH.sep + item;
+    if (PATH.sep === '\\') {
+      rgxPath = 'node_modules\\' + PATH.sep + item;
+    }
+    return new RegExp(rgxPath);
+  });
   return regxExc;
 }
 
