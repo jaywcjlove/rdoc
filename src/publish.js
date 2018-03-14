@@ -25,8 +25,11 @@ module.exports = function server(cmd) {
     branch: cmd.branch,
     repo: cmd.publish,
     message: `Update website, ${new Date()}!`
-  }, function name() {
+  }, function name(err) {
     load.stop();
+    if(err) {
+      return console.log(err);
+    }
     console.log(`\n  Push to ${cmd.branch} success!\n`.green.bold);
   });
 }
