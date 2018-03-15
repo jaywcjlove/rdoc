@@ -82,7 +82,7 @@ module.exports = {
   docTreePath: resolveApp('.cache/.reactdoc.tree.json'),
   watchFilePath: resolveApp('.cache/watch-dir.js'),
   projectPath: appDirectory,
-  publicPath: '/',
+  publicPath: '',
   logoPath: logoPath(),
   // rdoc 工具所在目录
   getExcludeFoldersRegExp: getExcludeFoldersRegExp(),
