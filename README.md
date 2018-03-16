@@ -11,6 +11,8 @@ rdoc
 
 Blazing-fast static site generator for React, Just write Markdown file. Visit the [react-doc.github.io](https://react-doc.github.io) website for more information.
 
+> The documentation site is also a demo [example](https://react-doc.github.io).
+
 <div align="center">
   <img src="./rdoc.png"> 
 </div>
