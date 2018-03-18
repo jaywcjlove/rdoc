@@ -7,7 +7,7 @@
 rdoc
 ---
 
-[![Join the chat at https://gitter.im/j-rdoc/Lobby](https://badges.gitter.im/j-rdoc/Lobby.svg)](https://gitter.im/j-rdoc/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![](https://img.shields.io/github/issues/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/issues) [![](https://img.shields.io/github/forks/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/network) [![](https://img.shields.io/github/stars/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/stargazers) [![](https://img.shields.io/github/release/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/releases)
+[![Join the chat at https://gitter.im/j-rdoc/Lobby](https://badges.gitter.im/j-rdoc/Lobby.svg)](https://gitter.im/j-rdoc/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![](https://img.shields.io/github/issues/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/issues) [![](https://img.shields.io/github/forks/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/network) [![](https://img.shields.io/github/stars/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/stargazers) [![](https://img.shields.io/github/release/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/releases) [![jaywcjlove/sb](https://jaywcjlove.github.io/sb/lang/english.svg)](README.md)
 
 基于React的快速静态网站生成器，你只需要写 Markdown 文档即可。访问 [react-doc.github.io](https://react-doc.github.io) 网站获取更多信息。
 

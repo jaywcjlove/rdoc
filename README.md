@@ -7,7 +7,7 @@
 rdoc
 ---
 
-[![Join the chat at https://gitter.im/j-rdoc/Lobby](https://badges.gitter.im/j-rdoc/Lobby.svg)](https://gitter.im/j-rdoc/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![](https://img.shields.io/github/issues/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/issues) [![](https://img.shields.io/github/forks/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/network) [![](https://img.shields.io/github/stars/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/stargazers) [![](https://img.shields.io/github/release/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/releases)
+[![Join the chat at https://gitter.im/j-rdoc/Lobby](https://badges.gitter.im/j-rdoc/Lobby.svg)](https://gitter.im/j-rdoc/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![](https://img.shields.io/github/issues/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/issues) [![](https://img.shields.io/github/forks/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/network) [![](https://img.shields.io/github/stars/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/stargazers) [![](https://img.shields.io/github/release/jaywcjlove/rdoc.svg)](https://github.com/jaywcjlove/rdoc/releases) [![jaywcjlove/sb](https://jaywcjlove.github.io/sb/lang/chinese.svg)](README_zh.md)
 
 Blazing-fast static site generator for React, Just write Markdown file. Visit the [react-doc.github.io](https://react-doc.github.io) website for more information.
 
