@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from '../component/Header';
 import Footer from '../component/Footer';
-import styles from './indexLayout.less';
+import styles from './IndexLayout.less';
 import logo from '../rdoc.logo.svg';
 
 export default class IndexLayout extends PureComponent {
