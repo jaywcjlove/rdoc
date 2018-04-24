@@ -9,7 +9,7 @@ const initCatch = require('../src/utils/initCatch');
 const Servers = require('../src/server');
 const Build = require('../src/build');
 const Publish = require('../src/publish');
-const paths = require('../src/conf/paths');
+const paths = require('../src/conf/path');
 const pkg = require('../package.json')
 
 program
@@ -70,7 +70,7 @@ program.markdownPaths.forEach((item) => {
     console.log(`Error: Directory ${item.yellow} does not exist`.red)
     isExists = false;
   }
-})
+});
 
 if (isExists) {
   FS.ensureDirSync(paths.catchDirPath);

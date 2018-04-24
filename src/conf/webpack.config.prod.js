@@ -1,31 +1,24 @@
+const autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
 const PATH = require('path');
 const UPATH = require('upath');
-const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CreateSpareWebpackPlugin = require('create-spare-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('@nuxtjs/friendly-errors-webpack-plugin');
 const CopyMarkdownImageWebpackPlugin = require('copy-markdown-image-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const paths = require('./paths');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const config = require('./webpack.config');
-
-// 断言这只是为了安全。
-// React的开发版本很慢，不适合生产。
-if (process.env.NODE_ENV !== 'production') {
-  throw new Error('Production builds must have NODE_ENV=production.');
-}
-
-// 注意：在这里定义，因为它将被使用不止一次。
-const cssFilename = 'css/[name].[contenthash:8].css';
+const pkg = require('../../package.json');
+const paths = require('./path');
 
 module.exports = function (cmd) {
-  config.bail = true;
-  config.entry = paths.appIndexJs;
-  config.module.strictExportPresence = true;
-  config.output.path = cmd.output;
-  config.output.filename = 'js/[hash:8].[name].js';
-
-  config.module.loaders = config.module.loaders.map((item) => {
+  config.entry = [
+    paths.appIndexJs,
+  ];
+  config.mode = 'production';
+  config.module.rules = config.module.rules.map((item) => {
     if (item.oneOf) {
       const loaders = [];
       loaders.push({
@@ -44,12 +37,15 @@ module.exports = function (cmd) {
           },
           {
             loader: require.resolve('babel-loader'),
-            options: require('../../.babelrc'),
+            options: require('../../.babelrc'), // eslint-disable-line
           },
         ],
       });
+      // https://ilikekillnerds.com/2018/03/disable-webpack-4-native-json-loader/
       loaders.push({
-        test: /\.json$/,
+        test: /rdoc\.tree\.data\.json$/,
+        // 禁用Webpack 4本身的JSON加载程序
+        type: 'javascript/auto',
         use: [
           {
             loader: require.resolve('raw-tree-replace-loader'),
@@ -60,109 +56,99 @@ module.exports = function (cmd) {
                 mdconf: true,
                 extensions: /\.md/,
                 relativePath: true,
-              }
-            }
-          }
-        ]
+              },
+            },
+          },
+        ],
       });
 
-      loaders.push(
-        // “postcss-loader”将autoprefixer应用到我们的CSS中。
-        // “css-loader”可以解析CSS中的路径，并添加资源作为依赖关系。
-        // “style-loader”将CSS转换为注入<style>标签的JS模块。
-        // 在生产中，我们使用一个插件将该CSS提取到一个文件，但是
-        // 在开发中“style-loader”可以对CSS进行热编辑。
-        {
-          test: /\.(css|less)$/,
-          loader: ExtractTextPlugin.extract(
-            Object.assign(
-              {
-                fallback: require.resolve('style-loader'),
-                use: [
-                  {
-                    loader: require.resolve('css-loader'),
-                    options: {
-                      modules: true,
-                      minimize: true,
-                      localIdentName: '[name]-[hash:base64:5]',
-                      importLoaders: 1,
-                    },
-                  },
-                  {
-                    loader: require.resolve('postcss-loader'),
-                    options: {
-                      // Necessary for external CSS imports to work
-                      // https://github.com/facebookincubator/create-react-app/issues/2677
-                      ident: 'postcss',
-                      plugins: () => [
-                        require('postcss-flexbugs-fixes'),
-                        autoprefixer({
-                          browsers: [
-                            '>1%',
-                            'last 4 versions',
-                            'Firefox ESR',
-                            'not ie < 9', // React doesn't support IE8 anyway
-                          ],
-                          flexbox: 'no-2009',
-                        }),
-                      ],
-                    },
-                  },
-                  require.resolve('less-loader'),
-                ],
-              }
-            )
-          ),
-        }
-      )
+      loaders.push({
+        test: /\.(css|less)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              modules: true,
+              localIdentName: '[name]-[hash:base64:5]',
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              // Necessary for external CSS imports to work
+              // https://github.com/facebookincubator/create-react-app/issues/2677
+              ident: 'postcss',
+              plugins: () => [
+                require('postcss-flexbugs-fixes'), // eslint-disable-line
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9', // React doesn't support IE8 anyway
+                  ],
+                  flexbox: 'no-2009',
+                }),
+              ],
+            },
+          },
+          require.resolve('less-loader'),
+        ],
+      });
 
       item.oneOf = loaders.concat(item.oneOf);
     }
     return item;
-  })
-
+  });
+  config.optimization = {
+    runtimeChunk: true,
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true, // set to true if you want JS source maps
+      }),
+      new OptimizeCSSAssetsPlugin({}),
+    ],
+    splitChunks: {
+      minSize: 0,
+      chunks: 'initial',
+      cacheGroups: {
+        commons: {
+          chunks: 'initial',
+          minChunks: 2,
+          maxInitialRequests: 5, // The default limit is too small to showcase the effect
+          minSize: 2000, // This is example is too small to create commons chunks
+        },
+        vendor: {
+          test: /node_modules/,
+          chunks: 'initial',
+          name: 'vendor',
+          priority: 10,
+          enforce: true,
+        },
+      },
+    },
+  };
 
   config.plugins = config.plugins.concat([
     new HtmlWebpackPlugin({
-      favicon: paths.defaultFaviconPath,
       inject: true,
+      favicon: paths.defaultFaviconPath,
       template: paths.defaultHTMLPath,
       minify: {
-        removeComments: true,
+        removeAttributeQuotes: true,
         collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
+        html5: true,
         minifyCSS: true,
-        minifyURLs: true,
+        removeComments: true,
+        removeEmptyAttributes: true,
       },
     }),
-    // Minify the code.
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        // Disabled because of an issue with Uglify breaking seemingly valid code:
-        // https://github.com/facebookincubator/create-react-app/issues/2376
-        // Pending further investigation:
-        // https://github.com/mishoo/UglifyJS2/issues/2011
-        comparisons: false,
-      },
-      mangle: {
-        safari10: true,
-      },
-      output: {
-        comments: false,
-        // Turned on because emoji and regex is not minified properly using default
-        // https://github.com/facebookincubator/create-react-app/issues/2488
-        ascii_only: true,
-      },
-    }),
-    // 注意：如果在“loader”中没有ExtractTextPlugin.extract（..），这将不起作用。
-    new ExtractTextPlugin({
-      filename: cssFilename,
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(pkg.version),
     }),
     new CopyMarkdownImageWebpackPlugin({
       dir: cmd.markdownPaths,
@@ -178,7 +164,14 @@ module.exports = function (cmd) {
         extensions: /\.md$/,
       },
     }),
-  ])
-
+    // new webpack.optimize.DedupePlugin(),
+    new FriendlyErrorsWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: 'css/[contenthash].css',
+      chunkFilename: 'css/[id].css',
+    }),
+  ]);
   return config;
-}
+};

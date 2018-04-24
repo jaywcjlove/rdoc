@@ -1,31 +1,23 @@
+const autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
 const PATH = require('path');
 const UPATH = require('upath');
-const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WatchMissingNodeModulesPlugin = require('rdoc-dev-utils/WatchMissingNodeModulesPlugin');
 const CreateSpareWebpackPlugin = require('create-spare-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('@nuxtjs/friendly-errors-webpack-plugin');
 const config = require('./webpack.config');
-const paths = require('./paths');
-
+const pkg = require('../../package.json');
+const paths = require('./path');
 
 module.exports = function (cmd) {
   config.entry = [
+    require.resolve('react-hot-loader/patch'),
     require.resolve('webpack-hot-dev-clients/webpackHotDevClient'),
     paths.appIndexJs,
   ];
-
-  // 高级输出配置
-  // https://webpack.js.org/configuration/output/#output-path
-  // 告诉Webpack将包含有关所包含模块信息的包含注释。
-  // 此选项默认为false，不应在生产中使用，但在读取生成的代码时非常有用。
-  config.output.pathinfo = true;
-  // 这不会产生真实的文件。
-  // 这只是WebpackDevServer在开发中提供的虚拟路径。
-  // 这是包含所有入口点的代码和Webpack运行时的JS包。
-  config.output.filename = 'js/[hash:8].[name].js';
-  config.module.loaders = config.module.loaders.map((item) => {
-    if (item.oneOf){
+  config.mode = 'development';
+  config.module.rules = config.module.rules.map((item) => {
+    if (item.oneOf) {
       const loaders = [];
       loaders.push({
         // Process JS with Babel.
@@ -43,12 +35,15 @@ module.exports = function (cmd) {
           },
           {
             loader: require.resolve('babel-loader'),
-            options: require('../../.babelrc'),
+            options: require('../../.babelrc'), // eslint-disable-line
           },
         ],
       });
+      // https://ilikekillnerds.com/2018/03/disable-webpack-4-native-json-loader/
       loaders.push({
-        test: /\.json$/,
+        test: /rdoc\.tree\.data\.json$/,
+        // 禁用Webpack 4本身的JSON加载程序
+        type: 'javascript/auto',
         use: [
           {
             loader: require.resolve('raw-tree-replace-loader'),
@@ -59,10 +54,10 @@ module.exports = function (cmd) {
                 mdconf: true,
                 extensions: /\.md/,
                 relativePath: true,
-              }
-            }
-          }
-        ]
+              },
+            },
+          },
+        ],
       });
 
       loaders.push({
@@ -84,7 +79,7 @@ module.exports = function (cmd) {
               // https://github.com/facebookincubator/create-react-app/issues/2677
               ident: 'postcss',
               plugins: () => [
-                require('postcss-flexbugs-fixes'),
+                require('postcss-flexbugs-fixes'), // eslint-disable-line
                 autoprefixer({
                   browsers: [
                     '>1%',
@@ -104,14 +99,17 @@ module.exports = function (cmd) {
       item.oneOf = loaders.concat(item.oneOf);
     }
     return item;
-  })
+  });
 
   config.plugins = config.plugins.concat([
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      favicon: paths.defaultFaviconPath,
       inject: true,
+      favicon: paths.defaultFaviconPath,
       template: paths.defaultHTMLPath,
+    }),
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(pkg.version),
     }),
     // 将模块名称添加到工厂功能，以便它们显示在浏览器分析器中。
     // 当接收到热更新信号时，在浏览器console控制台打印更多可读性高的模块名称等信息
@@ -126,16 +124,7 @@ module.exports = function (cmd) {
         extensions: /\.md$/,
       },
     }),
-    // 如果您需要一个缺少的模块，然后再安装npm，那么您仍然需要重新启动Webpack的开发服务器来发现它。
-    // 此插件使自动发现，所以您不必重新启动。
-    new WatchMissingNodeModulesPlugin([paths.appNodeModules, paths.defaultNodeModules]),
-  ])
-
-  // 在开发过程中关闭性能提示，因为我们不做任何感兴趣的拆分或缩小。
-  // 这些警告变得很麻烦。
-  config.performance = {
-    hints: false,
-  }
-
+    new FriendlyErrorsWebpackPlugin(),
+  ]);
   return config;
-}
+};

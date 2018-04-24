@@ -37,7 +37,7 @@ export default class Markdown extends React.Component {
     }
     import(`__project_root__/.cache/md/${filename}.md`).then((data) => {
       this.setState({
-        markdownStr: data,
+        markdownStr: data.default || data,
       }, () => {
         let code = ReactDOM.findDOMNode(this);
         code = code.getElementsByTagName('code');

@@ -1,16 +1,16 @@
 const PATH = require('path');
-const paths = require('./paths');
+const paths = require('./path');
 
 module.exports = {
   entry: {},
   output: {
     path: paths.appBuildDist,
     publicPath: paths.publicPath,
+    filename: 'js/[name].js',
     chunkFilename: 'js/[hash:8].[name].js',
   },
   module: {
-    strictExportPresence: true,
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx|mjs)$/,
         exclude: [/node_modules/, /\.(cache)/],
@@ -23,7 +23,6 @@ module.exports = {
             // 首先运行linter。
             // 在Babel处理js之前做这一点很重要。
             options: {
-              // formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
               configFile: require.resolve('../../.eslintrc.js'),
             },
@@ -45,22 +44,22 @@ module.exports = {
                 {
                   test: /rdoc\.logo\.svg$/,
                   path: paths.logoPath,
-                }
-              ]
+                },
+              ],
             },
           },
           {
             test: /\.md$/,
-            use:[
+            use: [
               {
                 loader: require.resolve('raw-content-replace-loader'),
                 options: {
                   path: PATH.join(paths.catchDirPath, './md'), // 需要替换的目录
                   replace: paths.projectPath, // 替换成目标目录
-                  sep: /___/g,               // 文件名存储，文件夹+下划线间隔+文件名
-                }
-              }
-            ]
+                  sep: /___/g, // 文件名存储，文件夹+下划线间隔+文件名
+                },
+              },
+            ],
           },
           // “file-loader”确保这些资源由WebpackDevServer服务。
           // 当您导入资源时，您将获得（虚拟）文件名。
@@ -75,9 +74,9 @@ module.exports = {
               name: 'static/[name].[hash:8].[ext]',
             },
           },
-        ]
+        ],
       },
-    ]
+    ],
   },
   plugins: [],
   node: {
@@ -86,5 +85,5 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty',
-  }
-}
+  },
+};

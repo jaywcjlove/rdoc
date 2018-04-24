@@ -9,37 +9,16 @@ const resolveApp = relativePath => PATH.resolve(appDirectory, relativePath);
 // rdoc 工具所在目录
 const resolveTool = relativePath => PATH.resolve(toolDirectory, relativePath);
 
-// Get favicon path
-const faviconPath = () => {
-  const _path = getCinfigFilePath('./favicon.ico', 'favicon');
-  if (_path) return _path;
-  return resolveTool('../../theme/default/favicon.ico');
-}
-
-// Get logo path
-const logoPath = () => {
-  const _path = getCinfigFilePath('./logo.svg','logo');
-  if (_path) return _path;
-  return false;
-}
-
-// Get theme path
-const getThemePath = () => {
-  const _path = getCinfigFilePath('./default', 'theme');
-  if (_path) return _path;
-  return resolveTool('../../theme/default');
-}
-
-function getCinfigFilePath(fileName,type) {
+function getCinfigFilePath(fileName, type) {
   let appPackage = resolveApp('./package.json');
   if (FS.existsSync(appPackage)) {
-    appPackage = require(appPackage);
+    appPackage = require(appPackage); // eslint-disable-line
     // 主题目录加载
     if (type === 'theme' && appPackage.rdoc) {
       if (!appPackage.rdoc[type]) appPackage.rdoc[type] = fileName;
       const _path = PATH.resolve(appDirectory, 'theme', appPackage.rdoc[type]);
       const _NodeModulesPath = PATH.resolve(appDirectory, 'node_modules', appPackage.rdoc[type]);
-      if (FS.existsSync(_path)){
+      if (FS.existsSync(_path)) {
         return _path;
       } else if (FS.existsSync(_NodeModulesPath)) {
         return _NodeModulesPath;
@@ -50,22 +29,42 @@ function getCinfigFilePath(fileName,type) {
     if (appPackage.rdoc && appPackage.rdoc[type] && FS.existsSync(PATH.resolve(appDirectory, appPackage.rdoc[type]))) {
       return PATH.resolve(appDirectory, appPackage.rdoc[type]);
     } else if (FS.existsSync(PATH.resolve(appDirectory, fileName))) {
-      return PATH.resolve(appDirectory, fileName)
+      return PATH.resolve(appDirectory, fileName);
     }
   }
   return false;
 }
 
+// Get favicon path
+const faviconPath = () => {
+  const _path = getCinfigFilePath('./favicon.ico', 'favicon');
+  if (_path) return _path;
+  return resolveTool('../../theme/default/favicon.ico');
+};
+
+// Get logo path
+const logoPath = () => {
+  const _path = getCinfigFilePath('./logo.svg', 'logo');
+  if (_path) return _path;
+  return false;
+};
+
+// Get theme path
+const getThemePath = () => {
+  const _path = getCinfigFilePath('./default', 'theme');
+  if (_path) return _path;
+  return resolveTool('../../theme/default');
+};
 
 const modPath = resolveTool('../../node_modules');
 function getExcludeFoldersRegExp() {
   if (!FS.existsSync(modPath)) return [];
   let regxExc = FS.readdirSync(modPath);
   regxExc = regxExc.filter(item => item !== 'rdoc');
-  regxExc = regxExc.map(item => {
-    let rgxPath = 'node_modules' + PATH.sep + item;
+  regxExc = regxExc.map((item) => {
+    let rgxPath = `node_modules${PATH.sep}${item}`;
     if (PATH.sep === '\\') {
-      rgxPath = 'node_modules\\' + PATH.sep + item;
+      rgxPath = `node_modules\\${PATH.sep}${item}`;
     }
     return new RegExp(rgxPath);
   });

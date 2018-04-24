@@ -1,5 +1,5 @@
 const FS = require('fs-extra');
-const paths = require('../conf/paths')
+const paths = require('../conf/path');
 
 module.exports = function (params) {
   if (params.build && FS.pathExistsSync(paths.appBuildDist)) {
@@ -10,4 +10,4 @@ module.exports = function (params) {
     // 清空目录
     FS.emptyDirSync(paths.catchDirPath);
   }
-}
+};
