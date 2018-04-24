@@ -22,7 +22,6 @@ module.exports = function serve(program) {
       modules: false,
       moduleTrace: false,
       warningsFilter: (warning) => {
-        console.log('warning:', warning);
         return true
       }
     }));

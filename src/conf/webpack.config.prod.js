@@ -4,7 +4,6 @@ const PATH = require('path');
 const UPATH = require('upath');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CreateSpareWebpackPlugin = require('create-spare-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('@nuxtjs/friendly-errors-webpack-plugin');
 const CopyMarkdownImageWebpackPlugin = require('copy-markdown-image-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -165,7 +164,6 @@ module.exports = function (cmd) {
       },
     }),
     // new webpack.optimize.DedupePlugin(),
-    new FriendlyErrorsWebpackPlugin(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
