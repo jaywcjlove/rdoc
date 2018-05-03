@@ -19,7 +19,7 @@ program
   .option('-d, --doc <path>', 'Other documents generated.')
   .option('-o, --output <path>', 'Writes the compiled file to the disk directory.', '.rdoc-dist')
   .option('-p, --port [number]', 'The port.', 5858)
-  .option('-h, --host [host]', 'The host.', '0.0.0.0')
+  .option('--host [host]', 'The host.', '0.0.0.0')
   .option('-b, --branch <branch>', 'Name of the branch you are pushing to.', 'gh-pages')
   .option('--publish [url]', 'Other documents generated.')
   .option('--build', 'Creating an optimized production build.')
