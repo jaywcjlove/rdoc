@@ -41,6 +41,7 @@ module.exports = function (params) {
       }
       log(`  Run the ${cmdstr} to start the website.\n\n`);
     });
+  } else {
+    return log(`Error: Directory ${paths.defaultTemplatePath} does not exist`.red);
   }
-  return log(`Error: Directory ${paths.defaultTemplatePath} does not exist`.red);
 };
