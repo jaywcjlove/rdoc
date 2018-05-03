@@ -89,7 +89,7 @@ Options:
   -d, --doc <path>       生成指定其他文档。
   -o, --output <path>    将编译的文件写入磁盘目录。（默认：.rdoc-dist）
   -p, --port [number]    端口。(默认: 5858)
-  -h, --host [host]      主机. (默认: 0.0.0.0)
+  --host [host]      主机. (默认: 0.0.0.0)
   -b, --branch <branch>  <分支>您要推送的分支的名称。（默认：gh-pages）
   --publish [url]        将生成的代码，push到指定仓库，已经分支。
   --build                创建编译的生产版本。
@@ -104,7 +104,7 @@ Examples:
   $ rdoc -d tutorial,doc
   $ rdoc -d tutorial,doc --clean --build
   $ rdoc -p 2323  -d doc --clean
-  $ rdoc -h 0.0.0.0 -d doc --clean
+  $ rdoc --host 0.0.0.0 -d doc --clean
   $ rdoc --publish https://<your-git-repo>.git --branch master
 ```
 ### 开发
