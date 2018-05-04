@@ -284,6 +284,31 @@ rdoc init dochelp   # 生成一个叫 dochelp 的工程
 npm link rdoc-theme-load-react
 ```
 
+在 `dochelp` 工程的 `package.json` 中添加配置
+
+```json
+{
+  "name": "dochelp",
+  "version": "1.0.0",
+  "description": "Describe rdoc-theme-load-react here",
+  "private": true,
+  "scripts": {
+    "deploy": "rdoc --publish <your repo url>",
+    "build": "rdoc -d home,introduce,faq,about,github --clean --build",
+    "start": "rdoc -d home,introduce,faq,about,github --clean"
+  },
+  "keywords": [],
+  "rdoc": {
++    "theme": "rdoc-theme-load-react"
+  },
+  "dependencies": {
+    "rdoc": "1.4.x"
+  },
+  "author": "",
+  "license": "MIT"
+}
+```
+
 ## 主题发布到npm
 
 如果主题发布到外网，你可以将主题作为一个依赖来使用主题，首先你需要注册一个账号 http://npmjs.org/ ，在命令行中登录你的账号，或者直接在命令行通过 `npm` 命令注册账号。
