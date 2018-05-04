@@ -10,7 +10,6 @@ const babelrc = {
     "react"
   ],
   "plugins": [
-    "react-hot-loader/babel",
     "transform-object-rest-spread",
     "syntax-dynamic-import",
     "transform-async-to-generator",
