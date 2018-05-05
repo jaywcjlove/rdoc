@@ -52,10 +52,15 @@ import menuSource from './rdoc.tree.data.json';
 
 ```js
 import BaseLayout from './layout/BasicLayout';
+import Loading from './component/Loading';
+
 export default function (Lazyload, props) {
   if (props.routeData && props.routeData.length > 0) {
     props.routeData.map((item) => {
-      const Pages = Lazyload(() => import('./routes/Pages'), {...item,...props});
+      item.component = Lazyload({
+        component: () => import('./routes/Pages'),
+        LoadingComponent: Loading,
+      });
       return item;
     });
   }
@@ -69,11 +74,14 @@ export default function (Lazyload, props) {
 
 ### Lazyload
 
-文档功能工具提供的，懒加载方法，下面方法为路由添加 `component` 并传入相应参数。
+文档工具包 [react-dynamic-loadable](https://github.com/jaywcjlove/react-dynamic-loadable) 提供的，懒加载方法，下面方法为路由添加 `component` 并传入相应参数。
 
 ```js
 props.routeData.map((item) => {
-  const Pages = Lazyload(() => import('./routes/Pages'), {...item,...props});
+  item.component = Lazyload({
+    component: () => import('./routes/Pages'),
+    LoadingComponent: Loading,
+  });
   return item;
 });
 ```
@@ -217,15 +225,13 @@ props.routeData.map((item) => {
 
 ## 默认依赖包
 
-工具基础的前端包工具，制作主题不需要安装。
+工具基础的前端包工具，制作主题需要安装依赖包，提供一个实例 [rdoc-theme-load-react](https://github.com/react-doc/rdoc-theme-load-react)。
 
 ```bash
 {
   "classnames": "2.2.5",
   "highlight.js": "9.12.0",
   "prop-types": "15.6.0",
-  "flowchart.js": "1.8.0",
-  "katex": "0.9.0-alpha2",
   "react": "16.2.0",
   "react-dom": "16.2.0",
   "react-markdown": "3.1.3",

@@ -25,10 +25,15 @@ const getIndexProps = (menus = [], attr) => {
 export default function (Lazyload, props) {
   let indexRoute = null;
 
+  const LoadableComponent = Lazyload({
+    component: () => import('./routes/Pages'),
+    LoadingComponent: Loading,
+  });
+
   // 路由加载Component
   if (props.routeData && props.routeData.length > 0) {
     props.routeData.map((item) => {
-      item.component = Lazyload(() => import('./routes/Pages'), item, <Loading />);
+      item.component = LoadableComponent;
       return item;
     });
   }
@@ -53,7 +58,7 @@ export default function (Lazyload, props) {
   // 首页路由放置路由数组中生成路由
   props.routeData.unshift({
     ...indexItem,
-    component: Lazyload(() => import('./routes/Pages'), indexItem, <Loading />),
+    component: LoadableComponent,
   });
 
   // 获取首页路由

@@ -27,7 +27,14 @@ export default class IndexLayout extends PureComponent {
               );
             }
             return (
-              <Route key={item.path} exact path={item.path} component={item.component} />
+              <Route key={item.path}
+                exact
+                path={item.path}
+                render={() => {
+                  const Comp = item.component;
+                  return <Comp {...item} />;
+                }}
+              />
             );
           })}
         </Switch>

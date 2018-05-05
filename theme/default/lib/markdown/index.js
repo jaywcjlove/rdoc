@@ -28,8 +28,8 @@ export default class Markdown extends React.Component {
     this.renderMarkdown();
   }
   renderMarkdown() {
-    const { page: { type, relative, props } } = this.props;
-    const relativeMd = relative || props.relative;
+    const { props: { type, relative } } = this.props;
+    const relativeMd = relative;
     if (!relativeMd) return null;
     let filename = formatPath(relativeMd);
     if (type === 'directory') {
@@ -50,8 +50,7 @@ export default class Markdown extends React.Component {
     });
   }
   render() {
-    const { page } = this.props;
-    const { title, layout } = page.mdconf;
+    const { mdconf: { title, layout } } = this.props;
     return (
       <div className={styles.markdownWapper}>
         {title && layout !== 'IndexLayout' && <h1 id={title} className={styles.pageTitle}>{title}</h1>}
