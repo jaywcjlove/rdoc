@@ -286,7 +286,7 @@ npm link rdoc-theme-load-react
 
 在 `dochelp` 工程的 `package.json` 中添加配置
 
-```json
+```diff
 {
   "name": "dochelp",
   "version": "1.0.0",
@@ -298,9 +298,9 @@ npm link rdoc-theme-load-react
     "start": "rdoc -d home,introduce,faq,about,github --clean"
   },
   "keywords": [],
-  "rdoc": {
++  "rdoc": {
 +    "theme": "rdoc-theme-load-react"
-  },
++  },
   "dependencies": {
     "rdoc": "1.4.x"
   },
