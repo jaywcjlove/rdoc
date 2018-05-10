@@ -124,7 +124,9 @@ module.exports = function (cmd) {
         extensions: /\.md$/,
       },
     }),
-    new FriendlyErrorsWebpackPlugin(),
+    new FriendlyErrorsWebpackPlugin({
+      clearConsole: true,
+    }),
   ]);
   return config;
 };

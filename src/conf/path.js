@@ -9,15 +9,31 @@ const resolveApp = relativePath => PATH.resolve(appDirectory, relativePath);
 // rdoc 工具所在目录
 const resolveTool = relativePath => PATH.resolve(toolDirectory, relativePath);
 
+// 获取 rdoc 配置
+function getRdocConf() {
+  const packagePath = resolveApp('./package.json');
+  let conf = {};
+  if (FS.existsSync(packagePath)) {
+    const confPkg = require(packagePath); // eslint-disable-line
+    conf = confPkg.rdoc;
+  }
+  const confPath = resolveApp('./.rdocrc.json');
+  if (FS.existsSync(confPath)) {
+    const confRc = require(confPath) // eslint-disable-line
+    conf = confRc;
+  }
+  return conf;
+}
+
 function getCinfigFilePath(fileName, type) {
-  let appPackage = resolveApp('./package.json');
-  if (FS.existsSync(appPackage)) {
-    appPackage = require(appPackage); // eslint-disable-line
+  const conf = getRdocConf();
+  // 这里是读取配置
+  if (conf && conf[type]) {
     // 主题目录加载
-    if (type === 'theme' && appPackage.rdoc) {
-      if (!appPackage.rdoc[type]) appPackage.rdoc[type] = fileName;
-      const _path = PATH.resolve(appDirectory, 'theme', appPackage.rdoc[type]);
-      const _NodeModulesPath = PATH.resolve(appDirectory, 'node_modules', appPackage.rdoc[type]);
+    if (type === 'theme') {
+      if (!conf[type]) conf[type] = fileName;
+      const _path = PATH.resolve(appDirectory, 'theme', conf[type]);
+      const _NodeModulesPath = PATH.resolve(appDirectory, 'node_modules', conf[type]);
       if (FS.existsSync(_path)) {
         return _path;
       } else if (FS.existsSync(_NodeModulesPath)) {
@@ -25,12 +41,14 @@ function getCinfigFilePath(fileName, type) {
       }
       return false;
     }
-    // 其它文件加载，如：logo.svg，favicon.ico
-    if (appPackage.rdoc && appPackage.rdoc[type] && FS.existsSync(PATH.resolve(appDirectory, appPackage.rdoc[type]))) {
-      return PATH.resolve(appDirectory, appPackage.rdoc[type]);
-    } else if (FS.existsSync(PATH.resolve(appDirectory, fileName))) {
-      return PATH.resolve(appDirectory, fileName);
+    if (/^(favicon|logo)$/.test(type)) {
+      return PATH.resolve(appDirectory, conf[type]);
     }
+  }
+  const _filepath = PATH.resolve(appDirectory, fileName);
+  if (FS.existsSync(_filepath)) {
+    // 默认根目录下的 favicon|logo
+    return _filepath;
   }
   return false;
 }
@@ -73,6 +91,7 @@ function getExcludeFoldersRegExp() {
 
 module.exports = {
   // Markdown 所在目录
+  rdocConf: getRdocConf(),
   appThemePath: getThemePath(),
   appPackage: resolveApp('./package.json'),
   appNodeModules: resolveApp('node_modules'),
