@@ -3,10 +3,9 @@ title: 命令说明
 sort: 1
 -->
 
+提供了一个 `rdoc-cli` 命令，跟 `rdoc` 命令是一样的，目的是解决 `Mac` 系统自带的 `Ruby` 命令 `rdoc` 冲突。
 
 ## 命令帮助
-
-提供了一个 `rdoc-cli` 命令，跟 `rdoc` 命令是一样的，目的是解决 `Mac` 系统自带的 `Ruby` 命令 `rdoc` 冲突。
 
 ```shell
 Usage: rdoc [options]

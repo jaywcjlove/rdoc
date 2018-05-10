@@ -12,6 +12,8 @@ mkdir rdoc-theme-load-react # 创建主题目录
 npm init -y # 生成配置文件 package.json
 ```
 
+⚠️ 注意事项：主题必须以 `rdoc-theme-` 开头，否则会报错。
+
 生成 `package.json` 内容：
 
 ```json
@@ -25,7 +27,7 @@ npm init -y # 生成配置文件 package.json
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
 ```
 
@@ -75,7 +77,7 @@ npm install --save-dev babel-cli babel-core babel-eslint babel-plugin-syntax-dyn
 +    "babel-plugin-transform-runtime": "^6.23.0",
 +    "babel-preset-env": "^1.6.1"
 +  },
-  "license": "ISC"
+  "license": "MIT"
 }
 ```
 
@@ -130,7 +132,7 @@ npm run build
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1"
   },
-  "license": "ISC"
+  "license": "MIT"
 }
 ```
 
@@ -183,7 +185,7 @@ npm install --save-dev eslint eslint-config-airbnb eslint-plugin-import eslint-p
 +    "eslint-plugin-react": "^7.7.0",
 +    "eslint-watch": "^3.1.4"
   },
-  "license": "ISC"
+  "license": "MIT"
 }
 ```
 
