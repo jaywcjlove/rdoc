@@ -46,6 +46,11 @@ module.exports = function server(cmd) {
       quiet: true,
       // 如果HTTPS环境变量设置为“true”，则启用HTTPS
       https: protocol === 'https',
+      // 告诉服务器从哪里提供内容。提供静态文件，这只是必要的。
+      contentBase: cmd.markdownPaths,
+      // 通知服务器观察由devServer.contentBase选项提供的文件。
+      // 文件更改将触发整页重新加载。
+      watchContentBase: true,
       // 这样可以避免某些系统的CPU过载。
       watchOptions: {
         ignored: /node_modules/,
