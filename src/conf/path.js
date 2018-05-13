@@ -35,9 +35,9 @@ function getCinfigFilePath(fileName, type) {
       const _path = PATH.resolve(appDirectory, 'theme', conf[type]);
       const _NodeModulesPath = PATH.resolve(appDirectory, 'node_modules', conf[type]);
       if (FS.existsSync(_path)) {
-        return _path;
+        return FS.realpathSync(_path);
       } else if (FS.existsSync(_NodeModulesPath)) {
-        return _NodeModulesPath;
+        return FS.realpathSync(_NodeModulesPath);
       }
       return false;
     }

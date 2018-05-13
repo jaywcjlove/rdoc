@@ -17,6 +17,11 @@ module.exports = function (cmd) {
     paths.appIndexJs,
   ];
   config.mode = 'production';
+  config.resolve = {
+    alias: {
+      'rdoc-theme': UPATH.normalizeSafe(paths.appThemePath),
+    },
+  };
   config.module.rules = config.module.rules.map((item) => {
     if (item.oneOf) {
       const loaders = [];
@@ -30,7 +35,6 @@ module.exports = function (cmd) {
             options: {
               multiple: [
                 { search: '__project_root__', replace: UPATH.normalizeSafe(paths.projectPath) },
-                { search: '__project_theme__', replace: UPATH.normalizeSafe(paths.appThemePath) },
               ],
             },
           },
