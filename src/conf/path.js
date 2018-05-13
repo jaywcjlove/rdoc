@@ -74,11 +74,12 @@ const getThemePath = () => {
   return resolveTool('../../theme/default');
 };
 
-const modPath = resolveTool('../../node_modules');
+const modPath = resolveApp('node_modules');
 function getExcludeFoldersRegExp() {
   if (!FS.existsSync(modPath)) return [];
   let regxExc = FS.readdirSync(modPath);
-  regxExc = regxExc.filter(item => item !== 'rdoc');
+  regxExc = regxExc.filter(item => !/rdoc(.*)/.test(item));
+
   regxExc = regxExc.map((item) => {
     let rgxPath = `node_modules${PATH.sep}${item}`;
     if (PATH.sep === '\\') {
