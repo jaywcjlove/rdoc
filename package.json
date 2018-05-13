@@ -1,6 +1,6 @@
 {
   "name": "rdoc",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Blazing-fast static site generator for React, Just write Markdown file.",
   "homepage": "https://react-doc.github.io",
   "bin": {
