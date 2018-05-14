@@ -33,7 +33,7 @@ module.exports = function (cmd) {
             loader: require.resolve('string-replace-loader'),
             options: {
               multiple: [
-                { search: '__project_root__', replace: UPATH.normalizeSafe(paths.projectPath) },
+                { search: '__project_root__', replace: UPATH.normalizeSafe(paths.projectPath), flags: 'ig' },
               ],
             },
           },
