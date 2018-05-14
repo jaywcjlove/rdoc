@@ -6,8 +6,8 @@ module.exports = {
   output: {
     path: paths.appBuildDist,
     publicPath: paths.publicPath,
-    filename: 'js/[name].js',
-    chunkFilename: 'js/[hash:8].[name].js',
+    filename: 'js/[name].[hash:8].js',
+    chunkFilename: 'js/[name].[hash:8].js',
   },
   module: {
     rules: [

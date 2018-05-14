@@ -13,10 +13,10 @@ const pkg = require('../../package.json');
 const paths = require('./path');
 
 module.exports = function (cmd) {
-  config.entry = [
-    paths.appIndexJs,
-  ];
   config.mode = 'production';
+  config.entry = [paths.appIndexJs];
+  config.output.filename = 'js/[hash:8].js';
+  config.output.chunkFilename = 'js/[name].[hash:8].js';
   config.resolve = {
     alias: {
       'rdoc-theme': UPATH.normalizeSafe(paths.appThemePath),

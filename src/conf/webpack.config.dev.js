@@ -10,12 +10,12 @@ const pkg = require('../../package.json');
 const paths = require('./path');
 
 module.exports = function (cmd) {
+  config.mode = 'development';
   config.entry = [
     require.resolve('react-hot-loader/patch'),
     require.resolve('webpack-hot-dev-clients/webpackHotDevClient'),
     paths.appIndexJs,
   ];
-  config.mode = 'development';
   config.resolve = {
     alias: {
       'rdoc-theme': UPATH.normalizeSafe(paths.appThemePath),
