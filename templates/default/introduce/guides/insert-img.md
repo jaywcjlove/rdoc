@@ -1,6 +1,6 @@
 <!--
 title: 插入图片
-sort: 6
+sort: 8
 -->
 
 Markdown 文档内可以插入图片资源。

@@ -1,6 +1,6 @@
 <!--
 title: 网站设置 
-sort: 7
+sort: 9
 -->
 
 通过一些配置定义网站一些内容如：标题、favicon、logo等。

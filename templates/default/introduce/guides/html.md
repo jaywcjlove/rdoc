@@ -51,13 +51,33 @@ window.onload = function(){
 }
 </script>
 
-<!--
-title: HTML代码运行
-sort: 6
---> 
-<!-- DomeStart -->
-<!-- DomeStartEnd -->
-<!--
-title: HTML代码运行
-sort: 6
--->
+
+## HTML Demo 预览
+
+需要在代码块前后加上一段 `<!--DemoStart--> ` 和 `<!--End-->` 注释即可，代码如下：
+
+```
+<!--DemoStart--> 
+\```html
+<div style="color:red;">
+  Test Preview HTML Example.
+</div>
+<script>
+console.log('test')
+</script>
+\```
+<!--End-->
+```
+
+下面是效果
+
+<!--DemoStart--> 
+```html
+<div style="color:red;">
+  Test Preview HTML Example.
+</div>
+<script>
+console.log('test')
+</script>
+```
+<!--End-->
