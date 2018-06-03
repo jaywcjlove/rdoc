@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const opn = require('opn');
 const detect = require('detect-port');
-const load = require('loading-cli');
 const conf = require('./conf/webpack.config.dev');
 const createDevServerConfig = require('./conf/webpack.config.server');
 require('colors-cli/toxic');
@@ -12,13 +11,10 @@ module.exports = function server(cmd) {
   let DEFAULT_PORT = cmd.port;
   const webpackConf = conf(cmd);
   const compiler = webpack(webpackConf);
-  const loading = load('Compiler is running...'.green).start();
-  loading.color = 'green';
 
   // https://webpack.js.org/api/compiler-hooks/#aftercompile
   // 编译完成之后打印日志
   compiler.hooks.done.tap('done', () => {
-    loading.stop();
     // eslint-disable-next-line
     console.log(`\nDev Server Listening at ${`http://${HOST}:${DEFAULT_PORT}`.green}`);
   });

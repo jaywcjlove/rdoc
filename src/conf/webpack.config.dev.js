@@ -27,7 +27,8 @@ module.exports = function (cmd) {
       loaders.push({
         // Process JS with Babel.
         test: /\.(js|jsx|mjs)$/,
-        exclude: paths.getExcludeFoldersRegExp.concat(/\.(cache)/),
+        // exclude: paths.getExcludeFoldersRegExp.concat(/\.(cache)/),
+        exclude: /node_modules/,
         use: [
           {
             loader: require.resolve('string-replace-loader'),
@@ -106,7 +107,7 @@ module.exports = function (cmd) {
   });
 
   config.plugins = config.plugins.concat([
-    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
       favicon: paths.defaultFaviconPath,
