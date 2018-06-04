@@ -27,8 +27,7 @@ module.exports = function (cmd) {
       loaders.push({
         // Process JS with Babel.
         test: /\.(js|jsx|mjs)$/,
-        // exclude: paths.getExcludeFoldersRegExp.concat(/\.(cache)/),
-        exclude: /node_modules/,
+        exclude: paths.getExcludeFoldersRegExp.concat(/\.(cache)/),
         use: [
           {
             loader: require.resolve('string-replace-loader'),
