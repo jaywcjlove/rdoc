@@ -35,7 +35,7 @@ module.exports = function (params) {
       });
 
       log('\n  initialization finished!\n'.green);
-      let cmdstr = `cd ${projectName} && npm start`.cyan;
+      let cmdstr = `cd ${projectName} && npm install && npm start`.cyan;
       if (typeof params.init !== 'string') {
         cmdstr = 'npm start'.cyan;
       }
