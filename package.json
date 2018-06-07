@@ -8,7 +8,7 @@
     "rdoc-cli": ".bin/rdoc.js"
   },
   "scripts": {
-    "deploy": "node .bin/rdoc.js --publish https://github.com/react-doc/react-doc.github.io.git --branch master",
+    "deploy": "node .bin/rdoc.js --publish git@github.com:react-doc/react-doc.github.io.git --branch master",
     "start": "node .bin/rdoc.js -d templates/default/home,templates/default/introduce,templates/default/faq,templates/default/about,templates/default/github --clean",
     "build": "node .bin/rdoc.js -d templates/default/home,templates/default/introduce,templates/default/faq,templates/default/about,templates/default/github --clean --build"
   },
