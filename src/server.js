@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const opn = require('opn');
+const openBrowsers = require('openBrowser');
 const detect = require('detect-port');
 const conf = require('./conf/webpack.config.dev');
 const createDevServerConfig = require('./conf/webpack.config.server');
@@ -26,7 +26,7 @@ module.exports = function server(cmd) {
         return console.log(err); // eslint-disable-line
       }
       // open browser
-      opn(`http://${HOST}:${DEFAULT_PORT}`);
+      openBrowsers(`http://${HOST}:${DEFAULT_PORT}`);
     });
   }).catch((err) => {
     console.log(err); // eslint-disable-line
