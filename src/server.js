@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const openBrowsers = require('openBrowser');
+const openBrowsers = require('open-browsers');
 const detect = require('detect-port');
 const conf = require('./conf/webpack.config.dev');
 const createDevServerConfig = require('./conf/webpack.config.server');
