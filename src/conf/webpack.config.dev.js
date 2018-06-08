@@ -6,7 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CreateSpareWebpackPlugin = require('create-spare-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('@nuxtjs/friendly-errors-webpack-plugin');
 const config = require('./webpack.config');
-const pkg = require('../../package.json');
 const paths = require('./path');
 
 module.exports = function (cmd) {
@@ -16,11 +15,6 @@ module.exports = function (cmd) {
     require.resolve('webpack-hot-dev-clients/webpackHotDevClient'),
     paths.appIndexJs,
   ];
-  config.resolve = {
-    alias: {
-      'rdoc-theme': UPATH.normalizeSafe(paths.appThemePath),
-    },
-  };
   config.module.rules = config.module.rules.map((item) => {
     if (item.oneOf) {
       const loaders = [];
@@ -111,9 +105,7 @@ module.exports = function (cmd) {
       inject: true,
       favicon: paths.defaultFaviconPath,
       template: paths.defaultHTMLPath,
-    }),
-    new webpack.DefinePlugin({
-      VERSION: JSON.stringify(pkg.version),
+      title: paths.rdocConf && paths.rdocConf.title ? paths.rdocConf.title : 'Rdoc',
     }),
     // 将模块名称添加到工厂功能，以便它们显示在浏览器分析器中。
     // 当接收到热更新信号时，在浏览器console控制台打印更多可读性高的模块名称等信息

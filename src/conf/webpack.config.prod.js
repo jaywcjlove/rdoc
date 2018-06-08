@@ -1,5 +1,4 @@
 const autoprefixer = require('autoprefixer');
-const webpack = require('webpack');
 const PATH = require('path');
 const UPATH = require('upath');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -9,7 +8,6 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const config = require('./webpack.config');
-const pkg = require('../../package.json');
 const paths = require('./path');
 
 module.exports = function (cmd) {
@@ -17,11 +15,6 @@ module.exports = function (cmd) {
   config.entry = [paths.appIndexJs];
   config.output.filename = 'js/[hash:8].js';
   config.output.chunkFilename = 'js/[name].[hash:8].js';
-  config.resolve = {
-    alias: {
-      'rdoc-theme': UPATH.normalizeSafe(paths.appThemePath),
-    },
-  };
   config.module.rules = config.module.rules.map((item) => {
     if (item.oneOf) {
       const loaders = [];
@@ -141,6 +134,7 @@ module.exports = function (cmd) {
       inject: true,
       favicon: paths.defaultFaviconPath,
       template: paths.defaultHTMLPath,
+      title: paths.rdocConf && paths.rdocConf.title ? paths.rdocConf.title : 'Rdoc',
       minify: {
         removeAttributeQuotes: true,
         collapseWhitespace: true,
@@ -149,9 +143,6 @@ module.exports = function (cmd) {
         removeComments: true,
         removeEmptyAttributes: true,
       },
-    }),
-    new webpack.DefinePlugin({
-      VERSION: JSON.stringify(pkg.version),
     }),
     new CopyMarkdownImageWebpackPlugin({
       dir: cmd.markdownPaths,

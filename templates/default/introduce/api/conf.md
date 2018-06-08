@@ -42,6 +42,7 @@ sort: 4
 
 ```json
 {
+  "title": "Rdoc title",
   "theme": "rdoc-theme-load-react",
   "favicon": "./assets/favicon.ico",
   "logo": "./assets/rdoc.logo.svg",
@@ -54,6 +55,14 @@ sort: 4
 ⚠️注意：  
 1. 优先读取 `.rdocrc.json` 配置。  
 2. 两种配置只有一种起作用。  
+
+### title
+
+设置默认网页标题内容。
+
+```html
+<title>Rdoc title</title>
+```
 
 ### favicon
 
