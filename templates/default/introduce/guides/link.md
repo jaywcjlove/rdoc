@@ -38,13 +38,19 @@ sort: 7
 
 ## 内嵌代码编辑器支持
 
-目前编辑器支持 [codepen.io](https://codepen.io/)、[jsfiddle.net](https://jsfiddle.net/)、[runjs.cn](http://runjs.cn) 三个网站，其中 runjs.cn 因为不是 `https` 站点，当你的 rdoc 生成的网站是 `https` 浏览器会屏蔽 http 的 runjs.cn 站点嵌入。
+目前编辑器支持 [codepen.io](https://codepen.io/)、[jsfiddle.net](https://jsfiddle.net/)、[runjs.cn](http://runjs.cn) 三个网站。
 
 ### 编辑器 codepen.io 展示效果
 
 直接将网址 `https://codepen.io/jaywcjlove/pen/ZWJVKy` 贴入 Markdown 中，出如下预览效果。
 
 https://codepen.io/jaywcjlove/pen/ZWJVKy
+
+### 编辑器 codesandbox.io 展示效果
+
+直接将网址 `https://codesandbox.io/s/jlomy0xoo5` 贴入 Markdown 中，出如下预览效果。
+
+https://codesandbox.io/embed/jlomy0xoo5
 
 ### 编辑器 jsfiddle.net 展示效果
 
@@ -55,6 +61,8 @@ https://jsfiddle.net/jaywcjlove/sxx57x6m/
 ### 编辑器 runjs.cn 展示效果
 
 直接将网址 `http://runjs.cn/code/yzfkxts2` 贴入 Markdown 中，出如下预览效果。
+
+> runjs.cn 因为不是 `https` 站点，当你的 rdoc 生成的网站如果是 `https` 站点，浏览器会屏蔽 http 的 runjs.cn 站点嵌入 
 
 http://runjs.cn/code/yzfkxts2
 

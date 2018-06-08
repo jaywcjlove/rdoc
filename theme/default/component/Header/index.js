@@ -28,7 +28,7 @@ export default class Header extends PureComponent {
       const url = item.mdconf && (item.mdconf.github || item.mdconf.url);
       if (url) {
         return (
-          <a key={index} target="_blank" href={url}>
+          <a key={index} target="_blank" rel="noopener noreferrer" href={url}>
             {item.mdconf.github && SVGGithub}{item.mdconf.title && <span>{item.mdconf.title}</span>}
           </a>
         );
