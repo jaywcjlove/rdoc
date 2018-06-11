@@ -24,14 +24,23 @@ export default class Canvas extends PureComponent {
         </code>
       </pre>
     );
+    const isPreview = /^(html|htm)$/.test(this.props.language);
+
     if (/^__dome__/.test(this.props.value)) {
       return (
         <div className={styles.demo}>
-          <div className={styles.demoBody} id={this.playerId}>
-            {/^(html|htm)$/.test(this.props.language) && <div dangerouslySetInnerHTML={{ __html: code }} />}
-          </div>
+          {isPreview && (
+            <div className={styles.demoBody} id={this.playerId}>
+              <div dangerouslySetInnerHTML={{ __html: code }} />
+            </div>
+          )}
           {PreCode(this.state.height)}
-          <div className={styles.demoControl} onClick={this.onClick.bind(this)}>
+          <div
+            className={classNames(styles.demoControl, {
+              [styles.isPreview]: !isPreview && this.state.height !== 0,
+            })}
+            onClick={this.onClick.bind(this)}
+          >
             {this.state.height === 0 ? '显示' : '隐藏'}代码
           </div>
         </div>
