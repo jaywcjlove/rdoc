@@ -10,6 +10,7 @@ body, html { background: #fff; }
 .jumbotron {
   position: absolute;
   background-color: #383838;
+  top: 56px;
   left: 0;
   right: 0;
   padding-top: 80px;

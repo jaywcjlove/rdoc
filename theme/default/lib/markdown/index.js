@@ -6,6 +6,7 @@ import hljs from 'highlight.js';
 import styles from './style/index.less';
 import InlineCode from './InlineCode';
 import Link from './Link';
+import Loading from '../../component/Loading/';
 
 hljs.configure({
   tabReplace: '  ', // 2 spaces
@@ -23,7 +24,7 @@ export default class Markdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      markdownStr: 'loading ... ',
+      markdownStr: '',
     };
   }
   componentWillMount() {
@@ -53,36 +54,41 @@ export default class Markdown extends React.Component {
   }
   render() {
     const { mdconf: { title, layout } } = this.props;
+    const { markdownStr } = this.state;
     return (
       <div className={styles.markdownWapper}>
         {title && layout !== 'IndexLayout' && <h1 id={title} className={styles.pageTitle}>{title}</h1>}
-        <ReactMarkdown
-          className={classNames('markdown', styles.markdown)}
-          source={this.state.markdownStr}
-          escapeHtml={false}
-          renderers={{
-            code: InlineCode,
-            link: Link,
-            linkReference: Link,
-          }}
-          allowNode={(node, index, parent) => {
-            if (node.type === 'html') {
-              // if (/<!--([^]+?)-->/.test(node.value)) return false;
-              // const scriptValue = node.value.match(/<script.*?>(.*?)<\/script>/ig);
-              // node.value.replace(/<script.*?>(.*?)<\/script>/, (te) => {
-              //   console.log('te:', te);
-              // });
-            }
-            // 判断 上一个节点是否为 <!--DemoStart -->
-            if (node.type === 'code' && parent.children && parent.children.length > 0 && parent.children[index - 1]) {
-              const parentNode = parent.children[index - 1];
-              if (parentNode.type === 'html' && /<!--\s?DemoStart\s?-->/.test(parentNode.value)) {
-                node.value = `__dome__${node.value}`;
+        {markdownStr ? (
+          <ReactMarkdown
+            className={classNames('markdown', styles.markdown)}
+            source={markdownStr}
+            escapeHtml={false}
+            renderers={{
+              code: InlineCode,
+              link: Link,
+              linkReference: Link,
+            }}
+            allowNode={(node, index, parent) => {
+              if (node.type === 'html') {
+                // if (/<!--([^]+?)-->/.test(node.value)) return false;
+                // const scriptValue = node.value.match(/<script.*?>(.*?)<\/script>/ig);
+                // node.value.replace(/<script.*?>(.*?)<\/script>/, (te) => {
+                //   console.log('te:', te);
+                // });
               }
-            }
-            return node;
-          }}
-        />
+              // 判断 上一个节点是否为 <!--DemoStart -->
+              if (node.type === 'code' && parent.children && parent.children.length > 0 && parent.children[index - 1]) {
+                const parentNode = parent.children[index - 1];
+                if (parentNode.type === 'html' && /<!--\s?DemoStart\s?-->/.test(parentNode.value)) {
+                  node.value = `__dome__${node.value}`;
+                }
+              }
+              return node;
+            }}
+          />
+        ) : (
+          <Loading />
+        )}
       </div>
     );
   }
