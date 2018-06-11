@@ -81,3 +81,23 @@ console.log('test')
 </script>
 ```
 <!--End-->
+
+目前只预览 `HTML`, 下面为 `LESS` 展示
+
+<!--DemoStart--> 
+```less
+.wapper {
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+.wapperContent {
+  padding: 15px 0 0 0;
+  max-width: 1200px;
+  margin: 0px auto 0;
+}
+```
+<!--End-->

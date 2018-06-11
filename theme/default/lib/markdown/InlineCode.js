@@ -42,6 +42,7 @@ export default class Canvas extends PureComponent {
             onClick={this.onClick.bind(this)}
           >
             {this.state.height === 0 ? '显示' : '隐藏'}代码
+            {this.props.language && <div className={styles.language}>{this.props.language}</div>}
           </div>
         </div>
       );
