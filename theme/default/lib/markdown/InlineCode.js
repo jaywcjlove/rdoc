@@ -16,7 +16,8 @@ export default class Canvas extends PureComponent {
     });
   }
   render() {
-    const code = this.props.value.replace(/^__dome__/, '').replace(/\\`/g, '`');
+    const sourceCode = this.props.value || '';
+    const code = sourceCode.replace(/^__dome__/, '').replace(/\\`/g, '`');
     const PreCode = height => (
       <pre className={styles.highlight} style={{ height }}>
         <code ref={node => this.codeDom = node} className={classNames('hljs', { [`language-${this.props.language}`]: this.props.language })}>
@@ -26,7 +27,7 @@ export default class Canvas extends PureComponent {
     );
     const isPreview = /^(html|htm)$/.test(this.props.language);
 
-    if (/^__dome__/.test(this.props.value)) {
+    if (/^__dome__/.test(sourceCode)) {
       return (
         <div className={styles.demo}>
           {isPreview && (
