@@ -8,6 +8,7 @@
     "rdoc-cli": ".bin/rdoc.js"
   },
   "scripts": {
+    "release": "release-it --src.tagName='v%s'",
     "deploy": "node .bin/rdoc.js --publish git@github.com:react-doc/react-doc.github.io.git --branch master",
     "start": "node .bin/rdoc.js -d templates/default/home,templates/default/introduce,templates/default/faq,templates/default/about,templates/default/github --clean",
     "build": "node .bin/rdoc.js -d templates/default/home,templates/default/introduce,templates/default/faq,templates/default/about,templates/default/github --clean --build"
@@ -87,5 +88,7 @@
     "webpack-hot-dev-clients": "^1.0.4",
     "write": "^1.0.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "release-it": "^7.4.7"
+  }
 }
