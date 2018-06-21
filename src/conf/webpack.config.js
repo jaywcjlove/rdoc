@@ -1,7 +1,7 @@
 const PATH = require('path');
 const webpack = require('webpack');
+const WebpackBar = require('webpackbar');
 const UPATH = require('upath');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const paths = require('./path');
 const pkg = require('../../package.json');
 
@@ -88,10 +88,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new ProgressBarPlugin({
-      format: ` build [:bar] ${':percent'.green} (:elapsed seconds)`,
-      clear: false,
-    }),
+    new WebpackBar({ name: pkg.name }),
     new webpack.DefinePlugin({
       VERSION: JSON.stringify(pkg.version),
     }),
