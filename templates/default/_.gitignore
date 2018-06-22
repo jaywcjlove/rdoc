@@ -5,6 +5,7 @@ package-lock.json
 .rdoc-dist
 
 *.bak
+*.log
 *.tem
 *.temp
 #.swp
