@@ -21,6 +21,17 @@ export default class BasicLayout extends PureComponent {
     super(props);
     this.state = {};
   }
+  componentDidUpdate() {
+    this.scrollToTop();
+  }
+  componentDidMount() {
+    this.scrollToTop();
+  }
+  scrollToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    window.scrollTo(0, 0);
+  }
   renderSubMenuItem(menus) {
     const { location: { pathname } } = this.props;
     if (menus.length > 1) {
