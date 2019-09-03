@@ -5,6 +5,9 @@ const UPATH = require('upath');
 const paths = require('./path');
 const pkg = require('../../package.json');
 
+const define = paths.rdocConf && paths.rdocConf.footer && typeof paths.rdocConf.footer === 'string'
+  ? { FOOTER: JSON.stringify(paths.rdocConf.footer) } : {};
+
 module.exports = {
   entry: {},
   output: {
@@ -91,6 +94,7 @@ module.exports = {
     new WebpackBar({ name: pkg.name }),
     new webpack.DefinePlugin({
       VERSION: JSON.stringify(pkg.version),
+      ...define,
     }),
   ],
   node: {

@@ -25,7 +25,7 @@ function getRdocConf() {
   return conf;
 }
 
-function getCinfigFilePath(fileName, type) {
+function getConfigFilePath(fileName, type) {
   const conf = getRdocConf();
   // 这里是读取配置
   if (conf && conf[type]) {
@@ -55,21 +55,21 @@ function getCinfigFilePath(fileName, type) {
 
 // Get favicon path
 const faviconPath = () => {
-  const _path = getCinfigFilePath('./favicon.ico', 'favicon');
+  const _path = getConfigFilePath('./favicon.ico', 'favicon');
   if (_path) return _path;
   return resolveTool('../../theme/default/favicon.ico');
 };
 
 // Get logo path
 const logoPath = () => {
-  const _path = getCinfigFilePath('./logo.svg', 'logo');
+  const _path = getConfigFilePath('./logo.svg', 'logo');
   if (_path) return _path;
   return false;
 };
 
 // Get theme path
 const getThemePath = () => {
-  const _path = getCinfigFilePath('./default', 'theme');
+  const _path = getConfigFilePath('./default', 'theme');
   if (_path) return _path;
   return resolveTool('../../theme/default');
 };

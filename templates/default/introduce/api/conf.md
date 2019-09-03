@@ -26,6 +26,7 @@ sort: 4
 +    "theme": "rdoc-theme-load-react",
 +    "favicon": "./assets/favicon.ico",
 +    "logo": "./assets/rdoc.logo.svg",
++    "footer": "前端<b>开</b>发"
 +    "react_modules": {
 +      "Hotkeys": "react-hot-keys"
 +    }
@@ -83,3 +84,7 @@ sort: 4
 这个参数是一个特定参数，需求是在制作主题的时候，你的主题需要预览 React 实例，实例还需要加载一些未知的第三方 React 组件，这个时候你需要在你的 Markdown 项目中安装你需要的 React 组件，在配置中指定你的组件，在预览实例中你就可以引用该组件了。
 
 > ⚠️注意：还在研究实现方式。
+
+### footer
+
+更改文档网站页脚
