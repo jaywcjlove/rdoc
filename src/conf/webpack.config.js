@@ -5,8 +5,10 @@ const UPATH = require('upath');
 const paths = require('./path');
 const pkg = require('../../package.json');
 
-const define = paths.rdocConf && paths.rdocConf.footer && typeof paths.rdocConf.footer === 'string'
-  ? { FOOTER: JSON.stringify(paths.rdocConf.footer) } : {};
+const define = { FOOTER: null };
+if (paths.rdocConf && paths.rdocConf.footer && typeof paths.rdocConf.footer === 'string') {
+  define.FOOTER = JSON.stringify(paths.rdocConf.footer);
+}
 
 module.exports = {
   entry: {},
